@@ -1,0 +1,178 @@
+/* =========================================================
+   INFO-BOX.CSS – Info-Bereich unter dem Kalender
+   ========================================================= */
+
+
+/* =========================================================
+   1) INFO-BOX CONTAINER
+   ========================================================= */
+
+/* Glasmorphismus-Effekt: dunkler halbtransparenter Hintergrund
+   mit blur-Filter. Dadurch scheint das Hintergrundbild
+   leicht durch und es sieht edel aus. */
+.content__info {
+  background: rgba(15, 12, 10, 0.75);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  padding: 20px 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   2) ÜBERSCHRIFT (KALENDERBLATT + MONAT)
+   ========================================================= */
+
+/* Alt-Gold/Bronze Farbe (#c9a771) passend zum Japan-Thema.
+   Die dünne Linie unten trennt die Überschrift vom Rest. */
+.content__title {
+  margin: 0 0 10px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #c9a771;
+  border-bottom: 1px solid rgba(201, 167, 113, 0.3);
+  padding-bottom: 8px;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  font-family: 'Osake', "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+
+/* =========================================================
+   3) VERTIKALER TEXT (OPTIONAL)
+   ========================================================= */
+
+/* Falls ich irgendwo vertikalen japanischen Text brauche.
+   writing-mode: vertical-rl dreht den Text von oben nach unten. */
+.vertikaler-text {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: 'Osake', "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 1.5rem;
+  color: #2b2013;
+  letter-spacing: 5px;
+}
+
+
+/* =========================================================
+   4) INTRO-TEXT (DATUM-BESCHREIBUNG)
+   ========================================================= */
+
+/* Der dynamische Text der beschreibt welcher Tag heute ist.
+   Helles Grau auf dunklem Hintergrund. */
+.content__intro {
+  margin: 0 0 15px 0;
+  font-size: 0.95rem;
+  color: #d0d0d0;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   5) UNTERTITEL (HISTORISCHE EREIGNISSE)
+   ========================================================= */
+
+/* Etwas helleres Gold als die Hauptüberschrift. */
+.content__subtitle {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #b0956d;
+}
+
+
+/* =========================================================
+   6) EREIGNIS-LISTE
+   ========================================================= */
+
+/* Die historischen Ereignisse als <ul>.
+   Gleiche Farbe wie der Intro-Text. */
+.content__events {
+  margin: 0 0 15px 0;
+  padding-left: 20px;
+  line-height: 1.5;
+  color: #d0d0d0;
+  font-size: 0.95rem;
+}
+
+/* Abstand zwischen den einzelnen Ereignissen */
+.content__events li {
+  margin-bottom: 12px;
+}
+
+/* Letztes Element braucht keinen Abstand nach unten */
+.content__events li:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   7) LADEANIMATION (SPINNER + PULSIERENDE PUNKTE)
+   ========================================================= */
+
+/* Container für die Ladeanimation.
+   Wird als <li> eingesetzt wenn die API lädt.
+   Kein Aufzählungszeichen, alles zentriert. */
+.history-loader {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0;
+  gap: 12px;
+  margin-left: -20px;
+}
+
+/* Drehender Kreis im Gold-Ton passend zum Japan-Theme.
+   Nur der obere Rand ist sichtbar (border-top),
+   der Rest ist fast unsichtbar → erzeugt den Spin-Effekt. */
+.history-loader__spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(201, 167, 113, 0.15);
+  border-top: 3px solid #c9a771;
+  border-radius: 50%;
+  animation: historySpinnerRotate 0.8s linear infinite;
+}
+
+@keyframes historySpinnerRotate {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Text neben dem Spinner */
+.history-loader__text {
+  color: #c9a771;
+  font-size: 0.85rem;
+  letter-spacing: 0.3px;
+}
+
+/* Drei Punkte die nacheinander aufleuchten.
+   Jeder Punkt bekommt eine leichte Verzögerung,
+   so entsteht ein Wellen-Effekt: . .. ... */
+.history-loader__dots span {
+  opacity: 0;
+  animation: historyDotPulse 1.4s ease-in-out infinite;
+  font-weight: bold;
+}
+
+.history-loader__dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.history-loader__dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.history-loader__dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes historyDotPulse {
+  0%, 80%, 100% { opacity: 0; }
+  40%           { opacity: 1; }
+}

@@ -1,0 +1,47 @@
+body,
+html
+  background-color: #111
+  height: 100%
+  width: 100%
+
+.snow
+  height: 100%
+  position: absolute
+  width: 100%
+
+.upwork
+  color: #14A800
+
+.socials
+  text-align: center
+  display: block
+  font-size: 14px
+  margin: 0
+  padding: 20px
+  position: absolute
+  left: 0
+  top: 0
+  right: 0
+  z-index: 1
+
+  li
+    display: inline
+
+    &:not(:last-child)
+      margin-right: .75em
+
+    a
+      color: white
+      font-weight: 500
+      display: inline-flex
+      align-items: center
+
+      &:hover
+        img
+          animation: link .5s
+
+      img
+        width: 1.3em
+        object-fit: contain
+        object-position: center
+        margin-right: 0.5em

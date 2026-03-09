@@ -1,0 +1,17 @@
+.sky {
+  height: 100%;
+  background: none repeat scroll 0 0 #34283F;
+  color: #FFF;
+  padding: 12px;
+  font-family: Helvetica;
+  display: block;
+}
+
+html, body {    
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+}

@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  min-height: 100vh;
+  background: url("https://i.ibb.co/9cpf8Lh/building.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+canvas {
+  width: 100%;
+  height: 100%;
+}

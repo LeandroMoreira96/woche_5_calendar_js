@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalenderblatt</title>
+
+    <!-- CSS-Dateien: aufgeteilt nach Bereichen -->
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/sidebar.css" />
+    <link rel="stylesheet" href="styles/calendar.css" />
+    <link rel="stylesheet" href="styles/info-box.css" />
+  </head>
+
+  <body>
+    <!-- Haupt-Container: Flexbox, Sidebar links + Content rechts -->
+    <div class="app">
+
+      <!-- Button um die Sidebar ein/auszublenden. Bleibt immer sichtbar. -->
+      <button id="sidebar-toggle-button" class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Sidebar"></button>
+
+      <!-- ==================== SIDEBAR ==================== -->
+      <!-- Sidebar startet versteckt, Standard-Layout ist horizontal -->
+      <aside class="sidebar sidebar--hidden">
+        <nav class="sidebar__nav">
+          <!-- Titel in Deutsch und Japanisch -->
+          <span class="sidebar__title sidebar__title--german">Kalender</span>
+          <span class="sidebar__title sidebar__title--japanese">カレンダー</span>
+        </nav>
+
+        <!-- Info-Karten: Jede Karte nutzt info_field.png als Hintergrund.
+             Inhalt wird dynamisch von script.js per renderSidebarInfoCards() befüllt. -->
+        <div class="sidebar__info-cards" id="sidebar-info-cards">
+        </div>
+      </aside>
+
+      <!-- ==================== HAUPTBEREICH ==================== -->
+      <main class="content" id="main-area">
+
+        <!-- Kalender mit Navigations-Pfeilen -->
+        <div class="content__calendar-wrap" id="calendar-area">
+          <!-- Wird von script.js per generateCalendarHtml(true) befüllt -->
+        </div>
+
+        <!-- Info-Box unter dem Kalender -->
+        <section class="content__info" id="content-info">
+          <h1 class="content__title" id="content-title">Kalenderblatt</h1>
+
+          <!-- Hier kommt der dynamische Infotext rein (Wochentag, der wievielte, usw.) -->
+          <p class="content__intro" id="content-intro"></p>
+
+          <!-- Bundesland-Dropdown + Feiertage-Toggle -->
+          <div style="margin-bottom: 15px;">
+            <select id="state-select" onchange="changeStateSelection()" style="padding: 5px; background: rgba(0,0,0,0.5); color: #c9a771; border: 1px solid #c9a771; border-radius: 4px;">
+              <option value="ALLE">Alle (bundesweit)</option>
+              <option value="DE-BW">Baden-Württemberg</option>
+              <option value="DE-BY">Bayern</option>
+              <option value="DE-BE">Berlin</option>
+              <option value="DE-BB">Brandenburg</option>
+              <option value="DE-HB">Bremen</option>
+              <option value="DE-HH">Hamburg</option>
+              <option value="DE-HE">Hessen</option>
+              <option value="DE-MV">Mecklenburg-Vorpommern</option>
+              <option value="DE-NI">Niedersachsen</option>
+              <option value="DE-NW">Nordrhein-Westfalen</option>
+              <option value="DE-RP">Rheinland-Pfalz</option>
+              <option value="DE-SL">Saarland</option>
+              <option value="DE-SN">Sachsen</option>
+              <option value="DE-ST">Sachsen-Anhalt</option>
+              <option value="DE-SH">Schleswig-Holstein</option>
+              <option value="DE-TH">Thüringen</option>
+            </select>
+            <button id="holiday-button" onclick="toggleHolidays()" style="padding: 5px 10px; background: #c9a771; color: #1a140c; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px;">
+              Feiertage ausblenden
+            </button>
+            <button onclick="goToToday()" style="padding: 5px 10px; background: #c9a771; color: #1a140c; border: none; border-radius: 4px; cursor: pointer; margin-left: 10px;">
+              Heute
+            </button>
+          </div>
+
+          <!-- Feiertagsliste für den aktuellen Monat -->
+          <div id="holiday-list" style="margin-bottom: 15px; font-size: 0.9rem; color: #c9a771; line-height: 1.6;"></div>
+
+          <!-- Historische Ereignisse (dynamisch per Wikidata API aus history.js) -->
+          <h2 class="content__subtitle" id="history-title">Historische Ereignisse</h2>
+          <ul class="content__events" id="history-events-list">
+            <!-- Wird von history.js per loadHistoricalEvents() befüllt -->
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <!-- Scripts am Ende vom Body, damit das HTML schon da ist -->
+    <!-- layout.js = Sidebar-Toggle und Layout-Steuerung -->
+    <!-- script.js = Kalender + Feiertage -->
+    <!-- history.js = historische Ereignisse -->
+    <script src="js/layout.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/history.js"></script>
+  </body>
+</html>

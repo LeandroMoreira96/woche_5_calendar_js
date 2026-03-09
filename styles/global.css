@@ -1,0 +1,81 @@
+/* =========================================================
+   GLOBAL.CSS – Grundlegende Einstellungen für die ganze Seite
+   ========================================================= */
+
+
+/* =========================================================
+   1) JAPANISCHE SCHRIFTART LADEN
+   ========================================================= */
+
+/* Die "Osake" Schriftart liegt im Ordner japan-font/.
+   Ich lade sie hier, damit ich sie überall nutzen kann.
+   font-display: swap sorgt dafür, dass der Text sofort
+   mit einer Ersatzschrift angezeigt wird, bis Osake geladen ist. */
+@font-face {
+  font-family: 'Osake';
+  src: url('../japan-font/Osake.otf') format('opentype'),
+       url('../japan-font/Osake.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* =========================================================
+   2) HTML UND BODY – GRUNDEINSTELLUNGEN
+   ========================================================= */
+
+/* Die Seite soll genau den Bildschirm füllen, ohne Scrollen.
+   100vh = komplette Bildschirmhöhe.
+   overflow: hidden verhindert Scrollbalken. */
+html,
+body {
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: #2c3e50;
+}
+
+/* Hintergrund-Einstellungen für den Body.
+   Das eigentliche Bild wird per JavaScript gesetzt,
+   hier definiere ich nur wie es dargestellt wird. */
+body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+/* =========================================================
+   3) APP-CONTAINER – FLEX-LAYOUT
+   ========================================================= */
+
+/* .app ist der Haupt-Container im HTML.
+   display: flex sorgt dafür, dass Sidebar und Content
+   nebeneinander angezeigt werden (horizontal). */
+.app {
+  display: flex;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================================
+   4) TABELLEN-RESET
+   ========================================================= */
+
+/* Damit die Kalender-Tabellen keine doppelten Ränder haben
+   und standardmäßig keine Borders anzeigen.
+   Die eigentlichen Borders setze ich dann gezielt in calendar.css */
+table {
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: none;
+}

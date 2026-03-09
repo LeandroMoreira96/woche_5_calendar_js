@@ -1,0 +1,243 @@
+/* =========================================================
+   SIDEBAR.CSS – Linke Sidebar mit Titel und Mini-Kalender
+   ========================================================= */
+
+
+/* =========================================================
+   1) SIDEBAR CONTAINER
+   ========================================================= */
+
+/* Die Sidebar hat eine feste Breite von 350px.
+   Das Hintergrundbild ist die sidebar1.png Grafik (Holz/Papier-Look).
+   Padding oben/unten brauche ich damit der Inhalt
+   nicht in die Holzstäbe der Grafik reinragt. */
+.sidebar {
+  width: 350px;
+  min-width: 350px;
+  background-image: url('../layout_pictures/sidebar1.png');
+  background-size: 100% 100%;
+  background-position: top left;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 20px 80px 20px;
+  margin: 20px 0 20px 20px;
+  min-height: calc(100vh - 40px);
+  height: calc(100vh - 40px);
+  position: relative;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+
+/* =========================================================
+   2) NAVIGATION (TITEL-BEREICH)
+   ========================================================= */
+
+/* Oben in der Sidebar steht der Titel.
+   Die dünne Linie unten trennt den Titel vom Kalender. */
+.sidebar__nav {
+  padding: 0 0 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 1;
+}
+
+
+/* =========================================================
+   3) TITEL-STYLING (DEUTSCH + JAPANISCH)
+   ========================================================= */
+
+/* Beide Titel nutzen die Osake-Schriftart.
+   Der deutsche steht links, der japanische rechts. */
+.sidebar__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: 0.05em;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+  font-family: 'Osake', "Segoe UI", system-ui, -apple-system, sans-serif;
+  margin: 0;
+  display: block;
+}
+
+/* "Kalender" linksbündig */
+.sidebar__title--german {
+  text-align: left;
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+
+/* "カレンダー" rechtsbündig */
+.sidebar__title--japanese {
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 0;
+}
+
+
+/* =========================================================
+   4) INFO-KARTEN CONTAINER
+   ========================================================= */
+
+/* Die Karten werden untereinander gestapelt.
+   Padding oben damit sie nicht am Titel kleben. */
+.sidebar__info-cards {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 10px 0 10px;
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+}
+
+
+/* =========================================================
+   5) EINZELNE INFO-KARTE
+   ========================================================= */
+
+/* Jede Karte nutzt info_field.png als Hintergrund (Bild-in-Bild).
+   Das Bild wird auf die volle Kartengröße gestreckt.
+   Box-Shadow für den 3D-Effekt / Schattierung. */
+.sidebar__info-card {
+  background-image: url('../layout_pictures/info_field.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border-radius: 3px;
+  min-height: 42px;
+}
+
+/* =========================================================
+   6) LABEL (ÜBERSCHRIFT DER KARTE)
+   ========================================================= */
+
+/* Klein, dezent, fast wie ein Untertitel.
+   Dunkle Farbe damit es auf dem Papier-Hintergrund lesbar ist. */
+.sidebar__info-card-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: rgba(43, 32, 19, 0.55);
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+
+/* =========================================================
+   7) VALUE (WERT / INHALT DER KARTE)
+   ========================================================= */
+
+/* Der eigentliche Inhalt: dunkel, klar lesbar,
+   in der Osake-Schrift für den Japan-Look. */
+.sidebar__info-card-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a140c;
+  font-family: 'Osake', "Segoe UI", system-ui, sans-serif;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+}
+
+
+/* =========================================================
+   10) SIDEBAR VERSTECKEN
+   ========================================================= */
+
+/* Wenn die Sidebar ausgeblendet wird, schiebe ich sie
+   nach links raus. Die Transition sorgt für eine
+   saubere Animation statt hartem Verschwinden. */
+.sidebar--hidden {
+  width: 0;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.sidebar {
+  transition: width 0.3s ease, min-width 0.3s ease,
+              padding 0.3s ease, margin 0.3s ease,
+              opacity 0.3s ease;
+}
+
+
+/* =========================================================
+   11) SIDEBAR-TOGGLE-BUTTON
+   ========================================================= */
+
+/* Drei horizontale Linien (Hamburger-Stil), dezent und elegant.
+   Passt zum Japan-Theme mit Gold auf dunklem Grund. */
+.sidebar-toggle {
+  position: fixed;
+  top: 22px;
+  left: 14px;
+  z-index: 100;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(201, 167, 113, 0.25);
+  border-radius: 6px;
+  background: rgba(26, 20, 12, 0.5);
+  color: #c9a771;
+  font-size: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(6px);
+}
+
+/* Drei Striche per Pseudo-Element + innerer Span simulieren.
+   Stattdessen nutze ich box-shadow auf einem einzigen Element. */
+.sidebar-toggle::before,
+.sidebar-toggle::after {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #c9a771;
+  border-radius: 1px;
+  transition: all 0.25s ease;
+}
+
+.sidebar-toggle::before {
+  box-shadow: 0 6px 0 #c9a771;
+}
+
+.sidebar-toggle:hover {
+  background: rgba(26, 20, 12, 0.75);
+  border-color: rgba(201, 167, 113, 0.45);
+  transform: scale(1.05);
+}
+
+.sidebar-toggle:hover::before,
+.sidebar-toggle:hover::after {
+  background: #d4b88a;
+}
+
+.sidebar-toggle:hover::before {
+  box-shadow: 0 6px 0 #d4b88a;
+}
+
+/* Wenn Sidebar offen: mittlerer Strich verschwindet,
+   oberer und unterer drehen sich zum X. */
+.sidebar-toggle--active::before {
+  transform: rotate(45deg) translate(2px, 2px);
+  box-shadow: none;
+}
+
+.sidebar-toggle--active::after {
+  transform: rotate(-45deg) translate(2px, -2px);
+}
