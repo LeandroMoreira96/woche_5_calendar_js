@@ -4,7 +4,7 @@
 
 
 /* =========================================================
-   1) SIDEBAR CONTAINER
+   SIDEBAR CONTAINER
    ========================================================= */
 
 /* Die Sidebar hat eine feste Breite von 350px.
@@ -32,7 +32,7 @@
 
 
 /* =========================================================
-   2) NAVIGATION (TITEL-BEREICH)
+   NAVIGATION (TITEL-BEREICH)
    ========================================================= */
 
 /* Oben in der Sidebar steht der Titel.
@@ -46,7 +46,7 @@
 
 
 /* =========================================================
-   3) TITEL-STYLING (DEUTSCH + JAPANISCH)
+   TITEL-STYLING (DEUTSCH + JAPANISCH)
    ========================================================= */
 
 /* Beide Titel nutzen die Osake-Schriftart.
@@ -78,7 +78,7 @@
 
 
 /* =========================================================
-   4) INFO-KARTEN CONTAINER
+   INFO-KARTEN CONTAINER
    ========================================================= */
 
 /* Die Karten werden untereinander gestapelt.
@@ -96,7 +96,7 @@
 
 
 /* =========================================================
-   5) EINZELNE INFO-KARTE
+   EINZELNE INFO-KARTE
    ========================================================= */
 
 /* Jede Karte nutzt info_field.png als Hintergrund (Bild-in-Bild).
@@ -116,7 +116,7 @@
 }
 
 /* =========================================================
-   6) LABEL (ÜBERSCHRIFT DER KARTE)
+   LABEL (ÜBERSCHRIFT DER KARTE)
    ========================================================= */
 
 /* Klein, dezent, fast wie ein Untertitel.
@@ -132,7 +132,7 @@
 
 
 /* =========================================================
-   7) VALUE (WERT / INHALT DER KARTE)
+   VALUE (WERT / INHALT DER KARTE)
    ========================================================= */
 
 /* Der eigentliche Inhalt: dunkel, klar lesbar,
@@ -148,17 +148,18 @@
 
 
 /* =========================================================
-   10) SIDEBAR VERSTECKEN
+   SIDEBAR VERSTECKEN
    ========================================================= */
 
 /* Wenn die Sidebar ausgeblendet wird, schiebe ich sie
    nach links raus. Die Transition sorgt für eine
    saubere Animation statt hartem Verschwinden. */
 .sidebar--hidden {
-  width: 0;
-  min-width: 0;
-  padding: 0;
-  margin: 0;
+  width: 0 !important;
+  min-width: 0 !important;
+  flex: 0 0 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
   overflow: hidden;
   opacity: 0;
 }
@@ -171,7 +172,7 @@
 
 
 /* =========================================================
-   11) SIDEBAR-TOGGLE-BUTTON
+   SIDEBAR-TOGGLE-BUTTON
    ========================================================= */
 
 /* Drei horizontale Linien (Hamburger-Stil), dezent und elegant.

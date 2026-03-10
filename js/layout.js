@@ -5,7 +5,7 @@
 
 
 /* =========================================================
-   1) SIDEBAR EIN- ODER AUSBLENDEN
+   SIDEBAR EIN- ODER AUSBLENDEN
    ========================================================= */
 
 // Standard: Sidebar ist versteckt, Kalender und Info-Box

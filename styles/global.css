@@ -4,7 +4,7 @@
 
 
 /* =========================================================
-   1) JAPANISCHE SCHRIFTART LADEN
+   JAPANISCHE SCHRIFTART LADEN
    ========================================================= */
 
 /* Die "Osake" Schriftart liegt im Ordner japan-font/.
@@ -22,7 +22,7 @@
 
 
 /* =========================================================
-   2) HTML UND BODY – GRUNDEINSTELLUNGEN
+   HTML UND BODY – GRUNDEINSTELLUNGEN
    ========================================================= */
 
 /* Die Seite soll genau den Bildschirm füllen, ohne Scrollen.
@@ -49,7 +49,7 @@ body {
 
 
 /* =========================================================
-   3) APP-CONTAINER – FLEX-LAYOUT
+   APP-CONTAINER – FLEX-LAYOUT
    ========================================================= */
 
 /* .app ist der Haupt-Container im HTML.
@@ -57,14 +57,21 @@ body {
    nebeneinander angezeigt werden (horizontal). */
 .app {
   display: flex;
+  justify-content: flex-start;
+  width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
 }
 
+/* main-Reset: Browser setzen oft Margin – das verursacht den linken Abstand */
+main.content {
+  margin: 0 !important;
+}
+
 
 /* =========================================================
-   4) TABELLEN-RESET
+   TABELLEN-RESET
    ========================================================= */
 
 /* Damit die Kalender-Tabellen keine doppelten Ränder haben

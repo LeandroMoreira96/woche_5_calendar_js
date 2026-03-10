@@ -4,25 +4,28 @@
 
 
 /* =========================================================
-   1) CONTENT-BEREICH (RECHTE SEITE)
+   CONTENT-BEREICH (RECHTE SEITE)
    ========================================================= */
 
-/* Standard-Layout: Kalender links, Info-Box rechts daneben.
-   Das ist das feste Format – Kalender und Papierrolle
-   hängen immer zusammen, Info-Box sitzt rechts daneben.
-   max-width: 80% lässt rechts Platz für den Samurai. */
+/* Standard-Layout (Sidebar geschlossen): Kalender ganz links,
+   Rolle + Pergament bündig zum linken Rand.
+   max-width: 72% hält alles links vom Ninja/Samurai. */
 .content {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  width: 72%;
+  max-width: 72%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: flex-start;
-  gap: 20px;
+  justify-content: flex-start;
+  gap: 8px;
   height: 100vh;
-  padding: 20px 20px 20px 40px;
+  padding: 12px 12px 12px 0;
+  margin: 0;
   background-color: transparent;
   overflow: hidden;
-  max-width: 80%;
   transition: all 0.3s ease;
 }
 
@@ -30,9 +33,10 @@
    in der Basis-Klasse, daher keine Überschreibung nötig. */
 
 /* Info-Box rechts neben dem Kalender, ein Stück weiter unten.
-   overflow-y: auto für Scrollen bei langen Ereignislisten. */
+   min-width verhindert Quetschen der Ereignistexte; flex: 1 nutzt verfügbaren Platz. */
 .content .content__info {
   flex: 1;
+  min-width: 380px;
   max-width: 1000px;
   margin-top: 80px;
   height: calc(60vh - 250px);
@@ -64,7 +68,7 @@
 
 
 /* =========================================================
-   2) NAVIGATIONS-BUTTONS (PFEILE ◀ ▶)
+   NAVIGATIONS-BUTTONS (PFEILE ◀ ▶)
    ========================================================= */
 
 /* Die runden Pfeil-Buttons links und rechts vom Monatsnamen.
@@ -102,39 +106,22 @@
 }
 
 
-/* =========================================================
-   3) KALENDER-CONTAINER (PAPIERROLLE)
-   ========================================================= */
+/* Kalender-Unit liegt in calendar-unit.css.
+   Der Container .content hält die Unit links (align-items: flex-start). */
 
-/* Die kalender-style.png ist die Papierrolle.
-   Padding ist so gewählt, dass die Tabelle innerhalb
-   des "Papiers" sitzt und nicht in die Holzstäbe ragt. */
-.content__calendar-wrap {
-  flex-shrink: 0;
-  flex-grow: 0;
-  width: 600px;
+/* Margin für die Kalender-Unit (Rolle + Pergament + Kalender) */
+.content .calendar-unit {
   margin-bottom: 15px;
-  background-image: url('../layout_pictures/kalender-style.png');
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 85px 70px 75px 70px;
-  min-height: 550px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  box-shadow: none;
+  align-self: flex-start;
 }
 
 
 /* =========================================================
-   4) MAIN-KALENDER TABELLE
+   MAIN-KALENDER TABELLE
    ========================================================= */
 
-/* Die Tabelle selbst: transparent, damit das Papier durchscheint.
-   max-width: 380px damit sie nicht zu breit wird
-   und schön auf dem Papier sitzt. */
+/* Die Tabelle selbst: transparent, damit das Pergament durchscheint. */
+.calendar-unit__calendar .calendar--main,
 .content .calendar--main {
   font-size: 1rem;
   width: 100%;
@@ -153,7 +140,7 @@
 
 
 /* =========================================================
-   5) BASIS-STIL FÜR ALLE ZELLEN IM MAIN-KALENDER
+   BASIS-STIL FÜR ALLE ZELLEN IM MAIN-KALENDER
    ========================================================= */
 
 /* Grundeinstellungen für alle th und td Zellen.
@@ -181,7 +168,7 @@
 
 
 /* =========================================================
-   6) HEADER-ZEILEN IM MAIN-KALENDER
+   HEADER-ZEILEN IM MAIN-KALENDER
    ========================================================= */
 
 /* Erste Zeile = Monatsname + Jahr (groß) */
@@ -232,11 +219,11 @@
 }
 
 .calendar-header-flex .calendar-nav-button:first-child {
-  left: -60px;
+  left: -20px;
 }
 
 .calendar-header-flex .calendar-nav-button:last-child {
-  right: -60px;
+  right: -20px;
 }
 
 /* Zweite Zeile = Wochentage (MO, DI, MI, ...) */
@@ -256,7 +243,7 @@
 
 
 /* =========================================================
-   7) TAGESZELLEN IM MAIN-KALENDER
+   TAGESZELLEN IM MAIN-KALENDER
    ========================================================= */
 
 /* Tage werden in der Osake-Schrift angezeigt.
@@ -278,7 +265,7 @@
 
 
 /* =========================================================
-   8) WOCHENENDEN (SAMSTAG + SONNTAG)
+   WOCHENENDEN (SAMSTAG + SONNTAG)
    ========================================================= */
 
 /* Wochenenden in dunklem Rot (#8b2525) hervorheben.
@@ -321,7 +308,7 @@
 
 
 /* =========================================================
-   9) VORMONATS- UND FOLGEMONATSZAHLEN
+   VORMONATS- UND FOLGEMONATSZAHLEN
    ========================================================= */
 
 /* Falls ich mal Tage vom Vor-/Folgemonat anzeige,
@@ -338,7 +325,7 @@
 
 
 /* =========================================================
-   10) LEERE ZELLEN
+   LEERE ZELLEN
    ========================================================= */
 
 /* Leere Zellen vor dem 1. und nach dem letzten Tag.
@@ -361,7 +348,7 @@
 
 
 /* =========================================================
-   11) FEIERTAGE IM KALENDER MARKIEREN
+   FEIERTAGE IM KALENDER MARKIEREN
    ========================================================= */
 
 /* Feiertage bekommen einen roten Hintergrund
@@ -377,7 +364,7 @@
 
 
 /* =========================================================
-   12) HEUTIGES DATUM MARKIEREN (ENSŌ-KREIS)
+   HEUTIGES DATUM MARKIEREN (ENSŌ-KREIS)
    ========================================================= */
 
 /* Das heutige Datum bekommt einen Ensō-Kreis (禅)
@@ -415,7 +402,7 @@
 
 
 /* =========================================================
-   13) AUSGEWÄHLTER TAG (SCHWARZER ENSŌ-KREIS)
+   AUSGEWÄHLTER TAG (SCHWARZER ENSŌ-KREIS)
    ========================================================= */
 
 /* Wenn ich einen anderen Tag als heute anklicke,
@@ -447,7 +434,7 @@
 
 
 /* =========================================================
-   14) HOVER-EFFEKT
+   HOVER-EFFEKT
    ========================================================= */
 
 /* Der Hover-Effekt kommt am Ende, damit er alle anderen

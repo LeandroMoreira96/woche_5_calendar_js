@@ -6,7 +6,7 @@
 
 
 /* =========================================================
-   1) GLOBALE VARIABLEN
+   GLOBALE VARIABLEN
    ========================================================= */
 
 // Canvas-Overlay und Context für alle Partikel-Animationen
@@ -41,7 +41,7 @@ var monthAnimationMap = {
 
 
 /* =========================================================
-   2) OVERLAY INITIALISIEREN
+   OVERLAY INITIALISIEREN
    ========================================================= */
 
 // Erstellt den Canvas-Layer über dem gesamten Bildschirm.
@@ -71,7 +71,7 @@ function resizeAnimCanvas() {
 
 
 /* =========================================================
-   3) ANIMATION WECHSELN (WIRD VON SCRIPT.JS AUFGERUFEN)
+   ANIMATION WECHSELN (WIRD VON SCRIPT.JS AUFGERUFEN)
    ========================================================= */
 
 // Prüft ob sich der Monat geändert hat.
@@ -92,7 +92,7 @@ function switchMonthAnimation(monthNumber) {
 
 
 /* =========================================================
-   4) AKTUELLE ANIMATION STOPPEN
+   AKTUELLE ANIMATION STOPPEN
    ========================================================= */
 
 function stopCurrentAnimation() {
@@ -117,7 +117,7 @@ function stopCurrentAnimation() {
 
 
 /* =========================================================
-   5) SCHNEE-ANIMATION (JANUAR)
+   SCHNEE-ANIMATION (JANUAR)
    ========================================================= */
 
 // Leichter Schneefall: weiße Kreise die sanft runterfallen
@@ -168,7 +168,7 @@ function startSnowAnimation() {
 
 
 /* =========================================================
-   6) STARKER SCHNEEFALL (DEZEMBER)
+   STARKER SCHNEEFALL (DEZEMBER)
    ========================================================= */
 
 // Dichter, schneller Schneefall – mehr Partikel,
@@ -219,7 +219,7 @@ function startHeavySnowAnimation() {
 
 
 /* =========================================================
-   7a) FEBRUAR – FEINER WINTERNEBEL
+   FEBRUAR – FEINER WINTERNEBEL
    ========================================================= */
 
 // Februar: frostiger Dunst in der unteren Bildschirmhälfte.
@@ -283,7 +283,7 @@ function startFebruaryFogAnimation() {
 
 
 /* =========================================================
-   7b) NOVEMBER – DICHTER BODENNEBEL
+   NOVEMBER – DICHTER BODENNEBEL
    ========================================================= */
 
 // November: schwerer, grauer Bodennebel. Dicker als Februar,
@@ -348,7 +348,7 @@ function startNovemberFogAnimation() {
 
 
 /* =========================================================
-   8) KIRSCHBLÜTEN – BILDER LADEN (LOKAL)
+   KIRSCHBLÜTEN – BILDER LADEN (LOKAL)
    ========================================================= */
 
 // März: petal.png (zartes rosa Blütenblatt)
@@ -375,7 +375,7 @@ function loadAprilPetal() {
 
 
 /* =========================================================
-   8a) MÄRZ – KIRSCHBLÜTEN AUS DER ECKE RECHTS OBEN
+   MÄRZ – KIRSCHBLÜTEN AUS DER ECKE RECHTS OBEN
    ========================================================= */
 
 // Im März kommen die Blütenblätter diagonal von rechts oben
@@ -458,7 +458,7 @@ function startMarchBlossomAnimation() {
 
 
 /* =========================================================
-   8b) APRIL – SAKURA-BLÜTEN FALLEN VON OBEN HERAB
+   APRIL – SAKURA-BLÜTEN FALLEN VON OBEN HERAB
    ========================================================= */
 
 // Im April fallen grüne Blätter (green_leaves.png + green_leaves_2.png)
@@ -554,7 +554,7 @@ function startAprilBlossomAnimation() {
 
 
 /* =========================================================
-   8c) MAI – FRÜHLINGSWIND MIT BLÄTTERN UND LICHTFLIMMERN
+   MAI – FRÜHLINGSWIND MIT BLÄTTERN UND LICHTFLIMMERN
    ========================================================= */
 
 // Mai: goldene Lichtflecken wie Sonnenstrahlen durch
@@ -691,7 +691,7 @@ function startMayBreezeAnimation() {
 
 
 /* =========================================================
-   8d) JUNI – LANGSAME WOLKEN MIT POLLEN
+   JUNI – LANGSAME WOLKEN MIT POLLEN
    ========================================================= */
 
 // Ruhiger Frühsommer: große halbtransparente Wolken ziehen
@@ -785,7 +785,7 @@ function startJuneCloudAnimation() {
 
 
 /* =========================================================
-   8e) AUGUST – HITZE-FLIMMERUNG MIT STAUB UND WARMEM LICHT
+   AUGUST – HITZE-FLIMMERUNG MIT STAUB UND WARMEM LICHT
    ========================================================= */
 
 // August: nur helle schwebende Lichtpunkte, keine Wolken.
@@ -842,7 +842,7 @@ function startAugustHazeAnimation() {
 
 
 /* =========================================================
-   9) GLÜHENDE ASCHE / FUNKEN (JULI)
+   GLÜHENDE ASCHE / FUNKEN (JULI)
    ========================================================= */
 
 // Hitzeflimmern von unten: viele kleine Funken und Glühpartikel
@@ -918,7 +918,7 @@ function startEmberAnimation() {
 
 
 /* =========================================================
-   10) HERBSTBLÄTTER (SEPTEMBER)
+   HERBSTBLÄTTER (SEPTEMBER)
    ========================================================= */
 
 // 4 echte Blattfotos als lokale Bilder:
@@ -1032,7 +1032,7 @@ function startLeavesAnimation() {
 
 
 /* =========================================================
-   11) GEWITTER MIT REGEN + BLITZ (OKTOBER)
+   GEWITTER MIT REGEN + BLITZ (OKTOBER)
    ========================================================= */
 
 // Regentropfen als diagonale Linien + gelegentliche Blitze.

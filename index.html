@@ -8,6 +8,7 @@
     <!-- CSS-Dateien: aufgeteilt nach Bereichen -->
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/sidebar.css" />
+    <link rel="stylesheet" href="styles/calendar-unit.css" />
     <link rel="stylesheet" href="styles/calendar.css" />
     <link rel="stylesheet" href="styles/info-box.css" />
   </head>
@@ -37,9 +38,13 @@
       <!-- ==================== HAUPTBEREICH ==================== -->
       <main class="content" id="main-area">
 
-        <!-- Kalender mit Navigations-Pfeilen -->
-        <div class="content__calendar-wrap" id="calendar-area">
-          <!-- Wird von script.js per generateCalendarHtml(true) befüllt -->
+        <!-- Kalender-Unit: Rolle + Pergament + Kalender als feste Einheit -->
+        <div class="calendar-unit">
+          <div class="calendar-unit__roll" id="calendar-roll-area"></div>
+          <div class="calendar-unit__parchment"></div>
+          <div class="calendar-unit__calendar" id="calendar-area">
+            <!-- Wird von script.js per generateCalendarHtml(true) befüllt -->
+          </div>
         </div>
 
         <!-- Info-Box unter dem Kalender -->
@@ -90,13 +95,16 @@
       </main>
     </div>
 
-    <!-- Scripts am Ende vom Body, damit das HTML schon da ist -->
-    <!-- layout.js = Sidebar-Toggle und Layout-Steuerung -->
-    <!-- script.js = Kalender + Feiertage -->
-    <!-- history.js = historische Ereignisse -->
+    <!-- Scripts: Reihenfolge wichtig (Abhängigkeiten) -->
+    <script src="js/config.js"></script>
+    <script src="js/date-utils.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/holidays.js"></script>
+    <script src="js/backgrounds.js"></script>
     <script src="js/layout.js"></script>
     <script src="js/animations.js"></script>
-    <script src="js/script.js"></script>
     <script src="js/history.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>

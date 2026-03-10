@@ -4,7 +4,7 @@
 
 
 /* =========================================================
-   1) INFO-BOX CONTAINER
+   INFO-BOX CONTAINER
    ========================================================= */
 
 /* Glasmorphismus-Effekt: dunkler halbtransparenter Hintergrund
@@ -23,7 +23,7 @@
 
 
 /* =========================================================
-   2) ÜBERSCHRIFT (KALENDERBLATT + MONAT)
+   ÜBERSCHRIFT (KALENDERBLATT + MONAT)
    ========================================================= */
 
 /* Alt-Gold/Bronze Farbe (#c9a771) passend zum Japan-Thema.
@@ -42,7 +42,7 @@
 
 
 /* =========================================================
-   3) VERTIKALER TEXT (OPTIONAL)
+   VERTIKALER TEXT (OPTIONAL)
    ========================================================= */
 
 /* Falls ich irgendwo vertikalen japanischen Text brauche.
@@ -58,7 +58,7 @@
 
 
 /* =========================================================
-   4) INTRO-TEXT (DATUM-BESCHREIBUNG)
+   INTRO-TEXT (DATUM-BESCHREIBUNG)
    ========================================================= */
 
 /* Der dynamische Text der beschreibt welcher Tag heute ist.
@@ -72,7 +72,7 @@
 
 
 /* =========================================================
-   5) UNTERTITEL (HISTORISCHE EREIGNISSE)
+   UNTERTITEL (HISTORISCHE EREIGNISSE)
    ========================================================= */
 
 /* Etwas helleres Gold als die Hauptüberschrift. */
@@ -85,7 +85,7 @@
 
 
 /* =========================================================
-   6) EREIGNIS-LISTE
+   EREIGNIS-LISTE
    ========================================================= */
 
 /* Die historischen Ereignisse als <ul>.
@@ -110,7 +110,7 @@
 
 
 /* =========================================================
-   7) LADEANIMATION (SPINNER + PULSIERENDE PUNKTE)
+   LADEANIMATION (SPINNER + PULSIERENDE PUNKTE)
    ========================================================= */
 
 /* Container für die Ladeanimation.

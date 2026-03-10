@@ -5,7 +5,7 @@
 
 
 /* =========================================================
-   1) JAPAN-FILTER KEYWORDS
+   JAPAN-FILTER KEYWORDS
    ========================================================= */
 
 // Liste von Schlüsselwörtern um Japan-bezogene Ereignisse
@@ -29,7 +29,7 @@ var japanKeywords = [
 
 
 /* =========================================================
-   2) REQUEST-COUNTER + CACHE + DEBOUNCE-TIMER
+   REQUEST-COUNTER + CACHE + DEBOUNCE-TIMER
    ========================================================= */
 
 // Request-Counter: Wenn ich schnell hintereinander auf
@@ -51,7 +51,7 @@ var historyDebounceTimer = null;
 
 
 /* =========================================================
-   3) HISTORISCHE EREIGNISSE VON DER WIKIPEDIA API LADEN
+   HISTORISCHE EREIGNISSE VON DER WIKIPEDIA API LADEN
    ========================================================= */
 
 // Ich nutze die Wikipedia REST API (de.wikipedia.org) um
@@ -150,7 +150,7 @@ function loadHistoricalEvents(optionalMonth, optionalDay) {
 
 
 /* =========================================================
-   4) LADEANIMATION ANZEIGEN (SPINNER + PUNKTE)
+   LADEANIMATION ANZEIGEN (SPINNER + PUNKTE)
    ========================================================= */
 
 // Zeigt einen drehenden Kreis und pulsierende Punkte
@@ -172,7 +172,7 @@ function showLoadingIndicator() {
 
 
 /* =========================================================
-   5) JAPAN-FILTER
+   JAPAN-FILTER
    ========================================================= */
 
 // Durchsucht alle Events nach Japan-Keywords.
@@ -197,7 +197,7 @@ function filterJapanEvents(cleanEvents) {
 
 
 /* =========================================================
-   6) EVENTS IN EINHEITLICHES FORMAT BRINGEN
+   EVENTS IN EINHEITLICHES FORMAT BRINGEN
    ========================================================= */
 
 // Die Wikipedia API gibt { text, year, pages } zurück.
@@ -217,19 +217,15 @@ function convertToCleanEvents(allEvents) {
 
 
 /* =========================================================
-   7) ÜBERSCHRIFT FÜR DEN EREIGNIS-BEREICH SETZEN
+   ÜBERSCHRIFT FÜR DEN EREIGNIS-BEREICH SETZEN
    ========================================================= */
 
 // Die Überschrift zeigt das Datum an,
 // z.B. "Historische Ereignisse am 9. März"
+// Nutzt monthNames aus config.js
 function updateHistoryTitle(optionalMonth, optionalDay) {
   var titleElement = document.getElementById("history-title");
   if (!titleElement) return;
-
-  var monthNames = [
-    "Januar", "Februar", "März", "April", "Mai", "Juni",
-    "Juli", "August", "September", "Oktober", "November", "Dezember"
-  ];
 
   var today = new Date();
   var dayNumber = optionalDay || today.getDate();
@@ -241,7 +237,7 @@ function updateHistoryTitle(optionalMonth, optionalDay) {
 
 
 /* =========================================================
-   8) EREIGNISSE IM HTML RENDERN
+   EREIGNISSE IM HTML RENDERN
    ========================================================= */
 
 // Baut die <li>-Elemente mit den Ereignissen zusammen.
@@ -263,23 +259,4 @@ function renderHistoryEvents(eventsArray) {
   historyContainer.innerHTML = htmlString;
 }
 
-
-/* =========================================================
-   9) ARRAY ZUFÄLLIG MISCHEN (FISHER-YATES)
-   ========================================================= */
-
-// Damit nicht immer die gleichen 5 Ereignisse kommen,
-// mische ich das Array zufällig durch.
-// Fisher-Yates ist der Standard-Algorithmus dafür.
-function shuffleArray(array) {
-  var shuffled = array.slice();
-
-  for (var i = shuffled.length - 1; i > 0; i--) {
-    var randomIndex = Math.floor(Math.random() * (i + 1));
-    var temp = shuffled[i];
-    shuffled[i] = shuffled[randomIndex];
-    shuffled[randomIndex] = temp;
-  }
-
-  return shuffled;
-}
+// shuffleArray kommt aus utils.js
