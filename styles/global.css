@@ -2,7 +2,6 @@
    GLOBAL.CSS – Grundlegende Einstellungen für die ganze Seite
    ========================================================= */
 
-
 /* =========================================================
    JAPANISCHE SCHRIFTART LADEN
    ========================================================= */
@@ -12,14 +11,23 @@
    font-display: swap sorgt dafür, dass der Text sofort
    mit einer Ersatzschrift angezeigt wird, bis Osake geladen ist. */
 @font-face {
-  font-family: 'Osake';
-  src: url('../japan-font/Osake.otf') format('opentype'),
-       url('../japan-font/Osake.ttf') format('truetype');
+  font-family: "Osake";
+  src:
+    url("../japan-font/Osake.otf") format("opentype"),
+    url("../japan-font/Osake.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Amanojaku";
+  src: url("../japan-font/amanojaku.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  /* Zeigt erst eine Systemschrift, bis Amanojaku geladen ist (verhindert unsichtbaren Text beim Laden) */
+  font-display: swap;
+}
 
 /* =========================================================
    HTML UND BODY – GRUNDEINSTELLUNGEN
@@ -33,7 +41,11 @@ body {
   height: 100vh;
   overflow: hidden;
   margin: 0;
-  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
   color: #2c3e50;
 }
 
@@ -46,7 +58,6 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-
 
 /* =========================================================
    APP-CONTAINER – FLEX-LAYOUT
@@ -68,7 +79,6 @@ body {
 main.content {
   margin: 0 !important;
 }
-
 
 /* =========================================================
    TABELLEN-RESET
