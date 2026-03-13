@@ -1,11 +1,6 @@
-/* =========================================================
-   SCRIPT.JS – Kalender-Hauptlogik, Rendering und Navigation
-   ========================================================= */
+/* Kalender Hauptlogik */
 
-/* =========================================================
-   AKTUELLER KALENDERZUSTAND
-   ========================================================= */
-
+/* KALENDERZUSTAND */
 var todayDate = new Date();
 var currentMonth = todayDate.getMonth() + 1;
 var currentYear = todayDate.getFullYear();
@@ -13,14 +8,10 @@ var currentYear = todayDate.getFullYear();
 // Feiertage anzeigen (per Button umschaltbar)
 var showHolidays = true;
 
-// Ausgewählter Tag: null = heute, sonst { year, month, day }
+// null = heute
 var selectedDay = null;
 
-
-/* =========================================================
-   KALENDER HTML GENERIEREN
-   ========================================================= */
-
+/* KALENDER HTML GENERIEREN */
 function generateCalendarHtml(withNavigation) {
   var totalDays = getDaysInMonth(currentYear, currentMonth);
   var startDay = getFirstWeekdayOfMonth(currentYear, currentMonth);
@@ -89,11 +80,7 @@ function generateCalendarHtml(withNavigation) {
   return html;
 }
 
-
-/* =========================================================
-   INFO-TEXT FÜR DEN HAUPTBEREICH
-   ========================================================= */
-
+/* INFO-TEXT FÜR HAUPTBEREICH */
 function generateInfoText() {
   var weekdayNames = [
     "Sonntag", "Montag", "Dienstag", "Mittwoch",
@@ -142,11 +129,7 @@ function generateInfoText() {
   );
 }
 
-
-/* =========================================================
-   HAUPT-RENDER-FUNKTION
-   ========================================================= */
-
+/* HAUPT-RENDER */
 function renderCalendar() {
   var mainHtml = generateCalendarHtml(true);
 
@@ -191,11 +174,7 @@ function renderCalendar() {
   switchMonthAnimation(currentMonth);
 }
 
-
-/* =========================================================
-   MONATSNAVIGATION
-   ========================================================= */
-
+/* MONATSNAVIGATION */
 function goToNextMonth() {
   var hadSelection = (selectedDay !== null);
   selectedDay = null;
@@ -234,11 +213,7 @@ function goToPreviousMonth() {
   }
 }
 
-
-/* =========================================================
-   BUNDESLAND & FEIERTAGE TOGGLE
-   ========================================================= */
-
+/* BUNDESLAND & FEIERTAGE TOGGLE */
 function changeStateSelection() {
   var stateSelectElement = document.getElementById("state-select");
   if (!stateSelectElement) return;
@@ -260,11 +235,7 @@ function toggleHolidays() {
   renderCalendar();
 }
 
-
-/* =========================================================
-   TAG AUSWÄHLEN & HEUTE
-   ========================================================= */
-
+/* TAG AUSWÄHLEN & HEUTE */
 function selectDay(day) {
   if (isToday(currentYear, currentMonth, day)) {
     selectedDay = null;
@@ -309,11 +280,7 @@ function goToToday() {
   loadHistoricalEvents();
 }
 
-
-/* =========================================================
-   START
-   ========================================================= */
-
+/* START */
 window.onload = function() {
   loadHolidaysFromApi();
   updateHistoryTitle();

@@ -1,18 +1,6 @@
-/* =========================================================
-   LAYOUT.JS – Layout-Steuerung und Sidebar-Toggle
-   Eigenes Modul für alles was mit dem Seitenlayout zu tun hat.
-   ========================================================= */
+/* Layout + Sidebar */
 
-
-/* =========================================================
-   SIDEBAR EIN- ODER AUSBLENDEN
-   ========================================================= */
-
-// Standard: Sidebar ist versteckt, Kalender und Info-Box
-// stehen nebeneinander (horizontales Layout).
-// Wenn die Sidebar eingeblendet wird, wechselt das Layout
-// auf vertikal (Kalender oben, Info unten) und der Content
-// wird schmaler damit die Sidebar Platz hat.
+/* SIDEBAR EIN-/AUSBLENDEN */
 function toggleSidebar() {
   var sidebarElement = document.querySelector(".sidebar");
   var contentElement = document.querySelector(".content");

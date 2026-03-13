@@ -1,14 +1,6 @@
-/* =========================================================
-   INFO-BOX.CSS – Info-Bereich unter dem Kalender
-   ========================================================= */
+/* Info-Box */
 
-/* =========================================================
-   INFO-BOX CONTAINER
-   ========================================================= */
-
-/* Glasmorphismus-Effekt: dunkler halbtransparenter Hintergrund
-   mit blur-Filter. Dadurch scheint das Hintergrundbild
-   leicht durch und es sieht edel aus. */
+/* CONTAINER (Glasmorphismus) */
 .content__info {
   background: rgba(15, 12, 10, 0.75);
   backdrop-filter: blur(5px);
@@ -20,12 +12,7 @@
   margin-bottom: 20px;
 }
 
-/* =========================================================
-   ÜBERSCHRIFT (KALENDERBLATT + MONAT)
-   ========================================================= */
-
-/* Alt-Gold/Bronze Farbe (#c9a771) passend zum Japan-Thema.
-   Die dünne Linie unten trennt die Überschrift vom Rest. */
+/* Titel */
 .content__title {
   margin: 0 0 10px 0;
   font-size: 1.5rem;
@@ -43,12 +30,7 @@
     sans-serif;
 }
 
-/* =========================================================
-   VERTIKALER TEXT (OPTIONAL)
-   ========================================================= */
-
-/* Falls ich irgendwo vertikalen japanischen Text brauche.
-   writing-mode: vertical-rl dreht den Text von oben nach unten. */
+/* VERTIKALER TEXT */
 .vertikaler-text {
   writing-mode: vertical-rl;
   text-orientation: upright;
@@ -63,12 +45,7 @@
   letter-spacing: 5px;
 }
 
-/* =========================================================
-   INTRO-TEXT (DATUM-BESCHREIBUNG)
-   ========================================================= */
-
-/* Der dynamische Text der beschreibt welcher Tag heute ist.
-   Helles Grau auf dunklem Hintergrund. */
+/* Intro */
 .content__intro {
   margin: 0 0 15px 0;
   font-size: 0.95rem;
@@ -76,11 +53,7 @@
   line-height: 1.5;
 }
 
-/* =========================================================
-   UNTERTITEL (HISTORISCHE EREIGNISSE)
-   ========================================================= */
-
-/* Etwas helleres Gold als die Hauptüberschrift. */
+/* Subtitle */
 .content__subtitle {
   margin: 0 0 10px 0;
   font-size: 1rem;
@@ -88,12 +61,7 @@
   color: #b0956d;
 }
 
-/* =========================================================
-   EREIGNIS-LISTE
-   ========================================================= */
-
-/* Die historischen Ereignisse als <ul>.
-   Gleiche Farbe wie der Intro-Text. */
+/* Events */
 .content__events {
   margin: 0 0 15px 0;
   padding-left: 20px;
@@ -102,23 +70,17 @@
   font-size: 0.95rem;
 }
 
-/* Abstand zwischen den einzelnen Ereignissen */
+/* Abstand */
 .content__events li {
   margin-bottom: 12px;
 }
 
-/* Letztes Element braucht keinen Abstand nach unten */
+/* letztes kein Abstand */
 .content__events li:last-child {
   margin-bottom: 0;
 }
 
-/* =========================================================
-   LADEANIMATION (SPINNER + PULSIERENDE PUNKTE)
-   ========================================================= */
-
-/* Container für die Ladeanimation.
-   Wird als <li> eingesetzt wenn die API lädt.
-   Kein Aufzählungszeichen, alles zentriert. */
+/* LADEANIMATION (SPINNER + PUNKTE) */
 .history-loader {
   list-style: none;
   display: flex;
@@ -130,9 +92,7 @@
   margin-left: -20px;
 }
 
-/* Drehender Kreis im Gold-Ton passend zum Japan-Theme.
-   Nur der obere Rand ist sichtbar (border-top),
-   der Rest ist fast unsichtbar → erzeugt den Spin-Effekt. */
+/* Spinner */
 .history-loader__spinner {
   width: 28px;
   height: 28px;
@@ -151,16 +111,14 @@
   }
 }
 
-/* Text neben dem Spinner */
+/* Text */
 .history-loader__text {
   color: #c9a771;
   font-size: 0.85rem;
   letter-spacing: 0.3px;
 }
 
-/* Drei Punkte die nacheinander aufleuchten.
-   Jeder Punkt bekommt eine leichte Verzögerung,
-   so entsteht ein Wellen-Effekt: . .. ... */
+/* Punkte */
 .history-loader__dots span {
   opacity: 0;
   animation: historyDotPulse 1.4s ease-in-out infinite;

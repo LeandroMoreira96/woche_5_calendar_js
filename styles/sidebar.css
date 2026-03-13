@@ -1,15 +1,6 @@
-/* =========================================================
-   SIDEBAR.CSS – Linke Sidebar mit Titel und Mini-Kalender
-   ========================================================= */
+/* Sidebar */
 
-/* =========================================================
-   SIDEBAR CONTAINER
-   ========================================================= */
-
-/* Die Sidebar hat eine feste Breite von 350px.
-   Das Hintergrundbild ist die sidebar1.png Grafik (Holz/Papier-Look).
-   Padding oben/unten brauche ich damit der Inhalt
-   nicht in die Holzstäbe der Grafik reinragt. */
+/* SIDEBAR CONTAINER */
 .sidebar {
   width: 350px;
   min-width: 350px;
@@ -29,12 +20,7 @@
   border-radius: 0;
 }
 
-/* =========================================================
-   NAVIGATION (TITEL-BEREICH)
-   ========================================================= */
-
-/* Oben in der Sidebar steht der Titel.
-   Die dünne Linie unten trennt den Titel vom Kalender. */
+/* TITEL-BEREICH */
 .sidebar__nav {
   padding: 0 0 16px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -42,12 +28,7 @@
   z-index: 1;
 }
 
-/* =========================================================
-   TITEL-STYLING (DEUTSCH + JAPANISCH)
-   ========================================================= */
-
-/* Beide Titel nutzen die Osake-Schriftart.
-   Der deutsche steht links, der japanische rechts. */
+/* Osake */
 .sidebar__title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -64,26 +45,21 @@
   display: block;
 }
 
-/* "Kalender" linksbündig */
+/* links */
 .sidebar__title--german {
   text-align: left;
   padding-left: 20px;
   margin-bottom: 8px;
 }
 
-/* "カレンダー" rechtsbündig */
+/* rechts */
 .sidebar__title--japanese {
   text-align: right;
   padding-right: 20px;
   margin-top: 0;
 }
 
-/* =========================================================
-   INFO-KARTEN CONTAINER
-   ========================================================= */
-
-/* Die Karten werden untereinander gestapelt.
-   Padding oben damit sie nicht am Titel kleben. */
+/* INFO-KARTEN CONTAINER */
 .sidebar__info-cards {
   flex: 1;
   display: flex;
@@ -95,13 +71,7 @@
   overflow-y: auto;
 }
 
-/* =========================================================
-   EINZELNE INFO-KARTE
-   ========================================================= */
-
-/* Jede Karte nutzt info_field.png als Hintergrund (Bild-in-Bild).
-   Das Bild wird auf die volle Kartengröße gestreckt.
-   Box-Shadow für den 3D-Effekt / Schattierung. */
+/* Karte */
 .sidebar__info-card {
   background-image: url("../layout_pictures/info_field.png");
   background-size: 100% 100%;
@@ -115,12 +85,7 @@
   min-height: 42px;
 }
 
-/* =========================================================
-   LABEL (ÜBERSCHRIFT DER KARTE)
-   ========================================================= */
-
-/* Klein, dezent, fast wie ein Untertitel.
-   Dunkle Farbe damit es auf dem Papier-Hintergrund lesbar ist. */
+/* Label */
 .sidebar__info-card-label {
   font-size: 0.75rem;
   font-weight: 700;
@@ -130,12 +95,7 @@
   font-family: "Segoe UI", system-ui, sans-serif;
 }
 
-/* =========================================================
-   VALUE (WERT / INHALT DER KARTE)
-   ========================================================= */
-
-/* Der eigentliche Inhalt: dunkel, klar lesbar,
-   in der Amanojaku-Schrift für den Japan-Look. */
+/* Value */
 .sidebar__info-card-value {
   font-size: 1rem;
   font-weight: 600;
@@ -145,13 +105,7 @@
   letter-spacing: 0.3px;
 }
 
-/* =========================================================
-   SIDEBAR VERSTECKEN
-   ========================================================= */
-
-/* Wenn die Sidebar ausgeblendet wird, schiebe ich sie
-   nach links raus. Die Transition sorgt für eine
-   saubere Animation statt hartem Verschwinden. */
+/* Sidebar versteckt */
 .sidebar--hidden {
   width: 0 !important;
   min-width: 0 !important;
@@ -171,12 +125,7 @@
     opacity 0.3s ease;
 }
 
-/* =========================================================
-   SIDEBAR-TOGGLE-BUTTON
-   ========================================================= */
-
-/* Drei horizontale Linien (Hamburger-Stil), dezent und elegant.
-   Passt zum Japan-Theme mit Gold auf dunklem Grund. */
+/* Toggle */
 .sidebar-toggle {
   position: fixed;
   top: 22px;
@@ -200,8 +149,7 @@
   backdrop-filter: blur(6px);
 }
 
-/* Drei Striche per Pseudo-Element + innerer Span simulieren.
-   Stattdessen nutze ich box-shadow auf einem einzigen Element. */
+/* 3 Striche */
 .sidebar-toggle::before,
 .sidebar-toggle::after {
   content: "";
@@ -232,8 +180,7 @@
   box-shadow: 0 6px 0 #d4b88a;
 }
 
-/* Wenn Sidebar offen: mittlerer Strich verschwindet,
-   oberer und unterer drehen sich zum X. */
+/* Offen = X aus den Strichen */
 .sidebar-toggle--active::before {
   transform: rotate(45deg) translate(2px, 2px);
   box-shadow: none;

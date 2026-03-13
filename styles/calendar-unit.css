@@ -1,11 +1,4 @@
-/* =========================================================
-   CALENDAR-UNIT.CSS – Fixe Einheit: Rolle + Pergament + Kalender
-   Ein Element, feste Größe. Bewegt man eins, bewegt sich alles mit.
-   Breite hier ändern – der linke Rand bleibt fix (align-self: flex-start).
-   ========================================================= */
-
-/* Die Kalender-Unit: feste Größe, immer links ausgerichtet.
-   flex-shrink: 0 verhindert Schrumpfen – Abstand zur linken Wand bleibt. */
+/* Unit – Rolle + Pergament + Kalender */
 
 .calendar-unit {
   flex-shrink: 0;
@@ -23,7 +16,7 @@
   box-sizing: border-box;
 }
 
-/* Schicht 1: Monats-Rolle (Hintergrund, per JS gesetzt) */
+/* Rolle (JS setzt Bild) */
 .calendar-unit__roll {
   position: absolute;
   top: 0;
@@ -37,7 +30,7 @@
   z-index: 0;
 }
 
-/* Schicht 2: Pergament-Overlay – fix auf der Rolle */
+/* Pergament */
 .calendar-unit__parchment {
   position: absolute;
   top: 52%;
@@ -54,7 +47,7 @@
   z-index: 1;
 }
 
-/* Schicht 3: Kalender – fix auf dem Pergament */
+/* Kalender */
 .calendar-unit__calendar {
   position: relative;
   z-index: 2;

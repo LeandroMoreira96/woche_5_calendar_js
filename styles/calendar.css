@@ -1,14 +1,6 @@
-/* =========================================================
-   CALENDAR.CSS – Hauptkalender, Navigation und Tages-Styling
-   ========================================================= */
+/* Kalender */
 
-/* =========================================================
-   CONTENT-BEREICH (RECHTE SEITE)
-   ========================================================= */
-
-/* Standard-Layout (Sidebar geschlossen): Kalender ganz links,
-   Rolle + Pergament bündig zum linken Rand.
-   max-width: 72% hält alles links vom Ninja/Samurai. */
+/* CONTENT-BEREICH (max-width 72% = links vom Ninja) */
 .content {
   flex: 1 1 0;
   min-width: 0;
@@ -28,11 +20,7 @@
   transition: all 0.3s ease;
 }
 
-/* Kalender-Rolle hat jetzt eine feste Breite direkt
-   in der Basis-Klasse, daher keine Überschreibung nötig. */
-
-/* Info-Box rechts neben dem Kalender, ein Stück weiter unten.
-   min-width verhindert Quetschen der Ereignistexte; flex: 1 nutzt verfügbaren Platz. */
+/* Info-Box rechts */
 .content .content__info {
   flex: 1;
   min-width: 380px;
@@ -42,9 +30,7 @@
   overflow-y: auto;
 }
 
-/* Wenn die Sidebar sichtbar ist, wechselt das Layout
-   auf vertikal (Kalender oben, Info unten) und wird schmaler,
-   damit die Sidebar Platz hat. */
+/* Sidebar an: Layout vertikal, schmaler */
 .content--with-sidebar {
   max-width: 45%;
   flex-direction: column;
@@ -53,10 +39,7 @@
   gap: 0;
 }
 
-/* Im Sidebar-Modus: Kalender-Rolle hat die gleiche feste Größe
-   aus der Basis-Klasse, keine Überschreibung nötig. */
-
-/* Im Sidebar-Modus: Info-Box unter dem Kalender, kein margin-top */
+/* Sidebar-Modus: Info unter Kalender */
 .content--with-sidebar .content__info {
   max-width: none;
   margin-top: 0;
@@ -65,12 +48,7 @@
   flex: 1;
 }
 
-/* =========================================================
-   NAVIGATIONS-BUTTONS (PFEILE ◀ ▶)
-   ========================================================= */
-
-/* Die runden Pfeil-Buttons links und rechts vom Monatsnamen.
-   Halbtransparenter weißer Hintergrund mit Hover-Effekt. */
+/* NAVIGATIONS-BUTTONS (PFEILE) */
 .calendar-nav-button {
   width: 40px;
   height: 40px;
@@ -91,32 +69,25 @@
   line-height: 1;
 }
 
-/* Beim Hover wird der Button heller und etwas größer */
+/* Hover: heller, größer */
 .calendar-nav-button:hover {
   background: rgba(255, 255, 255, 0.4);
   transform: scale(1.15);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Beim Klicken kurz kleiner (Feedback-Effekt) */
+/* Active: kurz kleiner */
 .calendar-nav-button:active {
   transform: scale(0.95);
 }
 
-/* Kalender-Unit liegt in calendar-unit.css.
-   Der Container .content hält die Unit links (align-items: flex-start). */
-
-/* Margin für die Kalender-Unit (Rolle + Pergament + Kalender) */
+/* Margin für Kalender-Unit */
 .content .calendar-unit {
   margin-bottom: 15px;
   align-self: flex-start;
 }
 
-/* =========================================================
-   MAIN-KALENDER TABELLE
-   ========================================================= */
-
-/* Die Tabelle selbst: transparent, damit das Pergament durchscheint. */
+/* MAIN-KALENDER TABELLE */
 .calendar-unit__calendar .calendar--main,
 .content .calendar--main {
   font-size: 1rem;
@@ -134,12 +105,7 @@
   height: 320px;
 }
 
-/* =========================================================
-   BASIS-STIL FÜR ALLE ZELLEN IM MAIN-KALENDER
-   ========================================================= */
-
-/* Grundeinstellungen für alle th und td Zellen.
-   Dunkle Schrift auf transparentem Hintergrund. */
+/* BASIS ZELLEN */
 .content .calendar--main th,
 .content .calendar--main td {
   padding: 2px 4px;
@@ -161,11 +127,7 @@
   height: calc(100% / 6);
 }
 
-/* =========================================================
-   HEADER-ZEILEN IM MAIN-KALENDER
-   ========================================================= */
-
-/* Erste Zeile = Monatsname + Jahr (groß) */
+/* HEADER (Monatsname, Wochentage) */
 .content .calendar--main thead tr:first-child th {
   background: transparent;
   color: #1a140c;
@@ -177,8 +139,7 @@
   letter-spacing: 0.5px;
 }
 
-/* Wenn Navigation da ist, hat die Header-Zelle keinen Border
-   und nutzt Flexbox für die Positionierung */
+/* Header mit Nav: kein Border, Flexbox */
 .content .calendar--main thead tr:first-child th.calendar-header-cell {
   border: none;
   padding: 15px 10px;
@@ -186,7 +147,7 @@
   position: relative;
 }
 
-/* Flex-Container für Pfeile und Monatsname */
+/* Pfeile + Monat */
 .calendar-header-flex {
   display: flex;
   justify-content: center;
@@ -195,7 +156,7 @@
   position: relative;
 }
 
-/* Monatsname in der Amanojaku-Schrift, mittig */
+/* Monatsname */
 .calendar-header-flex .month-header {
   font-size: 1.4rem;
   font-weight: 700;
@@ -205,7 +166,7 @@
   letter-spacing: 1px;
 }
 
-/* Pfeile per position: absolute nach außen schieben */
+/* Pfeile nach außen (absolute) */
 .calendar-header-flex .calendar-nav-button {
   position: absolute;
   top: 50%;
@@ -220,7 +181,7 @@
   right: -20px;
 }
 
-/* Zweite Zeile = Wochentage (MO, DI, MI, ...) */
+/* Wochentage */
 .content .calendar--main thead tr:last-child th {
   background: transparent;
   color: #1a140c;
@@ -235,12 +196,7 @@
   width: calc(100% / 7);
 }
 
-/* =========================================================
-   TAGESZELLEN IM MAIN-KALENDER
-   ========================================================= */
-
-/* Tage werden in der Amanojaku-Schrift angezeigt.
-   7 gleich große Spalten. */
+/* Tage */
 .content .calendar--main tbody td {
   color: #2b2013;
   font-size: 1.05rem;
@@ -251,18 +207,12 @@
   position: relative;
 }
 
-/* Tage mit Inhalt bekommen einen Pointer-Cursor */
+/* Tage mit Inhalt = pointer */
 .content .calendar--main tbody td:not(:empty) {
   cursor: pointer;
 }
 
-/* =========================================================
-   WOCHENENDEN (SAMSTAG + SONNTAG)
-   ========================================================= */
-
-/* Wochenenden in dunklem Rot (#8b2525) hervorheben.
-   Gilt für Header (th) und Tageszellen (td).
-   Beide Kalender: Main + Sidebar. */
+/* WOCHENENDEN */
 .content .calendar--main th.saturday,
 .content .calendar--main td.saturday,
 .sidebar .calendar--sidebar th.saturday,
@@ -281,7 +231,7 @@
   font-weight: bold;
 }
 
-/* Wochenenden-Spalten mit rotem Rand markieren */
+/* Sa/So Rand */
 .content .calendar--main th.saturday,
 .content .calendar--main td.saturday,
 .sidebar .calendar--sidebar th.saturday,
@@ -298,12 +248,7 @@
   border-right: 2px solid rgba(139, 37, 37, 0.3);
 }
 
-/* =========================================================
-   VORMONATS- UND FOLGEMONATSZAHLEN
-   ========================================================= */
-
-/* Falls ich mal Tage vom Vor-/Folgemonat anzeige,
-   sollen die ganz dezent sein. */
+/* Vor-/Folgemonat */
 .content .calendar--main td.other-month {
   color: rgba(43, 32, 19, 0.25);
   font-weight: normal;
@@ -314,20 +259,14 @@
   color: rgba(139, 37, 37, 0.2);
 }
 
-/* =========================================================
-   LEERE ZELLEN
-   ========================================================= */
-
-/* Leere Zellen vor dem 1. und nach dem letzten Tag.
-   Kein Klick-Zeiger, sonst denkt man da ist was. */
+/* Leere Zellen */
 .content .calendar--main td.empty-cell,
 .sidebar .calendar--sidebar td.empty-cell {
   background: transparent;
   cursor: default;
 }
 
-/* Wochenenden-Rand auch bei leeren Zellen beibehalten
-   damit die Spalte durchgängig markiert ist */
+/* Sa/So-Rand auch bei leeren Zellen */
 .content .calendar--main td.empty-cell.saturday,
 .content .calendar--main td.empty-cell.sunday,
 .sidebar .calendar--sidebar td.empty-cell.saturday,
@@ -336,13 +275,7 @@
   border-right: 2px solid rgba(139, 37, 37, 0.3);
 }
 
-/* =========================================================
-   FEIERTAGE IM KALENDER MARKIEREN
-   ========================================================= */
-
-/* Feiertage bekommen einen roten Hintergrund
-   und einen inneren Rand (box-shadow inset).
-   So sieht man sie sofort. */
+/* FEIERTAGE */
 .content .calendar--main td.holiday,
 .sidebar .calendar--sidebar td.holiday {
   background: rgba(139, 37, 37, 0.35);
@@ -351,13 +284,7 @@
   box-shadow: inset 0 0 0 2px rgba(139, 37, 37, 0.6);
 }
 
-/* =========================================================
-   HEUTIGES DATUM MARKIEREN (ENSŌ-KREIS)
-   ========================================================= */
-
-/* Das heutige Datum bekommt einen Ensō-Kreis (禅)
-   als Markierung. Der Kreis liegt per ::before
-   hinter der Tageszahl. */
+/* HEUTIGES DATUM (Ensō) */
 .content .calendar--main td.today,
 .sidebar .calendar--sidebar td.today {
   position: relative;
@@ -388,15 +315,7 @@
   transform: translate(-50%, -45%);
 }
 
-/* =========================================================
-   AUSGEWÄHLTER TAG (SCHWARZER ENSŌ-KREIS)
-   ========================================================= */
-
-/* Wenn ich einen anderen Tag als heute anklicke,
-   bekommt dieser den schwarzen Ensō-Kreis (enso_black.png).
-   mix-blend-mode: multiply sorgt dafür, dass der weiße
-   Hintergrund vom PNG verschwindet und nur der Pinselstrich
-   auf dem Papier sichtbar ist. */
+/* AUSGEWÄHLTER TAG (schwarzer Ensō) */
 .content .calendar--main td.selected {
   position: relative;
   z-index: 1;
@@ -419,13 +338,7 @@
   mix-blend-mode: multiply;
 }
 
-/* =========================================================
-   HOVER-EFFEKT
-   ========================================================= */
-
-/* Der Hover-Effekt kommt am Ende, damit er alle anderen
-   Farben überschreibt. Tage werden beim Hover
-   leicht vergrößert und fetter. */
+/* Hover */
 .content .calendar--main td:hover:not(.empty-cell) {
   cursor: pointer;
   transform: scale(1.05);

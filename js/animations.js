@@ -1,29 +1,18 @@
-/* =========================================================
-   ANIMATIONS.JS – Monats-Animationen als Overlay
-   Jeder Monat bekommt eine passende Wetter-/Partikel-Animation.
-   Alles Vanilla JS + Canvas, keine externen Libraries.
-   ========================================================= */
+/* Monats-Animationen, Canvas Overlay */
 
-
-/* =========================================================
-   GLOBALE VARIABLEN
-   ========================================================= */
-
-// Canvas-Overlay und Context für alle Partikel-Animationen
+/* GLOBALE VARIABLEN */
 var animCanvas = null;
 var animCtx = null;
 
-// Aktueller Animation-Frame und Monat (damit ich nicht
-// bei jedem renderCalendar() die Animation neu starte)
+// Frame/Monat damit ich nicht bei jedem render neu starte
 var animFrameId = null;
 var animCurrentMonth = 0;
 var animParticles = [];
 
-// Fog-Overlay (eigener Container, CSS-basiert)
+// Fog CSS
 var animFogContainer = null;
 
-// Zuordnung: Monatsnummer → Animations-Funktion
-// Monate ohne eigene Animation (5, 6, 8) bleiben leer
+// Monat → Animations-Funktion
 var monthAnimationMap = {
   1:  startSnowAnimation,
   2:  startFebruaryFogAnimation,
@@ -39,14 +28,7 @@ var monthAnimationMap = {
   12: startHeavySnowAnimation
 };
 
-
-/* =========================================================
-   OVERLAY INITIALISIEREN
-   ========================================================= */
-
-// Erstellt den Canvas-Layer über dem gesamten Bildschirm.
-// pointer-events: none damit man noch alles anklicken kann.
-// Wird einmal beim ersten Aufruf erzeugt.
+/* OVERLAY INITIALISIEREN */
 function initAnimationOverlay() {
   if (animCanvas) return;
 
@@ -69,14 +51,7 @@ function resizeAnimCanvas() {
   animCanvas.height = window.innerHeight;
 }
 
-
-/* =========================================================
-   ANIMATION WECHSELN (WIRD VON SCRIPT.JS AUFGERUFEN)
-   ========================================================= */
-
-// Prüft ob sich der Monat geändert hat.
-// Wenn ja: alte Animation stoppen, neue starten.
-// Wenn nein: nichts tun (Performance).
+/* ANIMATION WECHSELN */
 function switchMonthAnimation(monthNumber) {
   if (monthNumber === animCurrentMonth) return;
   animCurrentMonth = monthNumber;
@@ -90,11 +65,7 @@ function switchMonthAnimation(monthNumber) {
   }
 }
 
-
-/* =========================================================
-   AKTUELLE ANIMATION STOPPEN
-   ========================================================= */
-
+/* ANIMATION STOPPEN */
 function stopCurrentAnimation() {
   if (animFrameId) {
     cancelAnimationFrame(animFrameId);
@@ -108,20 +79,14 @@ function stopCurrentAnimation() {
     animCanvas.style.zIndex = "5";
   }
 
-  // Fog-Container entfernen falls vorhanden
+  // Fog weg
   if (animFogContainer && animFogContainer.parentNode) {
     animFogContainer.parentNode.removeChild(animFogContainer);
     animFogContainer = null;
   }
 }
 
-
-/* =========================================================
-   SCHNEE-ANIMATION (JANUAR)
-   ========================================================= */
-
-// Leichter Schneefall: weiße Kreise die sanft runterfallen
-// mit leichtem Wind-Effekt.
+/* JANUAR – SCHNEE */
 function startSnowAnimation() {
   var count = 120;
   var w = animCanvas.width;
@@ -167,12 +132,7 @@ function startSnowAnimation() {
 }
 
 
-/* =========================================================
-   STARKER SCHNEEFALL (DEZEMBER)
-   ========================================================= */
-
-// Dichter, schneller Schneefall – mehr Partikel,
-// höhere Geschwindigkeit, stärkerer Wind.
+/* DEZEMBER – STARKER SCHNEEFALL */
 function startHeavySnowAnimation() {
   var count = 250;
   var w = animCanvas.width;
@@ -218,12 +178,7 @@ function startHeavySnowAnimation() {
 }
 
 
-/* =========================================================
-   FEBRUAR – FEINER WINTERNEBEL
-   ========================================================= */
-
-// Februar: frostiger Dunst in der unteren Bildschirmhälfte.
-// Bläulich-weiß, dicker als vorher aber feiner als November.
+/* FEBRUAR – WINTERNEBEL */
 function startFebruaryFogAnimation() {
   var w = animCanvas.width;
   var h = animCanvas.height;
@@ -282,13 +237,7 @@ function startFebruaryFogAnimation() {
 }
 
 
-/* =========================================================
-   NOVEMBER – DICHTER BODENNEBEL
-   ========================================================= */
-
-// November: schwerer, grauer Bodennebel. Dicker als Februar,
-// konzentriert in der unteren Hälfte. Warm-grau, stumpf,
-// melancholisch. Deutlich sichtbar.
+/* NOVEMBER – BODENNEBEL */
 function startNovemberFogAnimation() {
   var w = animCanvas.width;
   var h = animCanvas.height;
@@ -347,13 +296,7 @@ function startNovemberFogAnimation() {
 }
 
 
-/* =========================================================
-   KIRSCHBLÜTEN – BILDER LADEN (LOKAL)
-   ========================================================= */
-
-// März: petal.png (zartes rosa Blütenblatt)
-// April: sakura_petal.png (anderer Stil, eher Blütenflocke)
-// Beide liegen lokal im Projekt statt von externen URLs.
+/* KIRSCHBLÜTEN – BILDER LADEN */
 var marchPetalImg = null;
 var marchPetalLoaded = false;
 var aprilPetalImg = null;
@@ -374,14 +317,7 @@ function loadAprilPetal() {
 }
 
 
-/* =========================================================
-   MÄRZ – KIRSCHBLÜTEN AUS DER ECKE RECHTS OBEN
-   ========================================================= */
-
-// Im März kommen die Blütenblätter diagonal von rechts oben
-// und fliegen nach links unten – wie ein frischer Frühlingswind.
-// Beim Start sind die Blätter bereits über den gesamten
-// Bildschirm verteilt, damit es sofort lebendig aussieht.
+/* MÄRZ – KIRSCHBLÜTEN */
 function startMarchBlossomAnimation() {
   loadMarchPetal();
 
@@ -390,8 +326,6 @@ function startMarchBlossomAnimation() {
   var h = animCanvas.height;
 
   for (var i = 0; i < count; i++) {
-    // Über den gesamten Bildschirm verteilen.
-    // Bewegungsrichtung: diagonal von rechts-oben nach links-unten.
     animParticles.push({
       x: Math.random() * w,
       y: Math.random() * h,
@@ -434,8 +368,6 @@ function startMarchBlossomAnimation() {
       p.y += p.ySpeed;
       p.flip += p.flipSpeed;
 
-      // Respawn: zufällig am oberen ODER rechten Rand,
-      // damit Blüten über die gesamte Breite und Höhe fliegen.
       if (p.y > animCanvas.height + 50 || p.x < -50) {
         if (Math.random() < 0.5) {
           p.x = Math.random() * animCanvas.width * 1.2;
@@ -457,13 +389,7 @@ function startMarchBlossomAnimation() {
 }
 
 
-/* =========================================================
-   APRIL – SAKURA-BLÜTEN FALLEN VON OBEN HERAB
-   ========================================================= */
-
-// Im April fallen grüne Blätter (green_leaves.png + green_leaves_2.png)
-// sanft von oben herab – wie ein leichter Frühlingsregen aus Blättern.
-// Beim Start sind die Blätter bereits überall verteilt.
+/* APRIL – BLÄTTER */
 var aprilLeafImages = [];
 var aprilLeafImagesLoaded = 0;
 var aprilLeafPaths = [
@@ -553,18 +479,12 @@ function startAprilBlossomAnimation() {
 }
 
 
-/* =========================================================
-   MAI – FRÜHLINGSWIND MIT BLÄTTERN UND LICHTFLIMMERN
-   ========================================================= */
-
-// Mai: goldene Lichtflecken wie Sonnenstrahlen durch
-// Baumkronen und Wasserspritzer von unten wie Wellen
-// die auf Felsen klatschen.
+/* MAI – FRÜHLINGSWIND */
 function startMayBreezeAnimation() {
   var w = animCanvas.width;
   var h = animCanvas.height;
 
-  // Goldene Lichtflecken
+  // Lichtflecken
   for (var j = 0; j < 12; j++) {
     animParticles.push({
       type: "light",
@@ -578,14 +498,12 @@ function startMayBreezeAnimation() {
     });
   }
 
-  // Wasserspritzer an den Klippen – Wellen prallen gegen
-  // die Felsen und das Wasser schießt nach oben, fächert
-  // sich auf und fällt dann durch Schwerkraft zurück.
+  // Spritzer: Wellen gegen Felsen
   var splashTimer = 0;
   var splashInterval = 30 + Math.floor(Math.random() * 50);
 
   function spawnSplash() {
-    // Aufschlagpunkt: unteres Drittel, auf Höhe der Klippen
+    // Aufschlag unten
     var cx = w * 0.05 + Math.random() * w * 0.9;
     var cy = h * 0.72 + Math.random() * h * 0.15;
 
@@ -606,7 +524,6 @@ function startMayBreezeAnimation() {
       });
     }
 
-    // Gischt/Nebel: feine Tröpfchen die langsamer sind
     var mistCount = 6 + Math.floor(Math.random() * 6);
     for (var m = 0; m < mistCount; m++) {
       animParticles.push({
@@ -675,7 +592,6 @@ function startMayBreezeAnimation() {
       }
     }
 
-    // Regelmäßig neue Spritzer spawnen
     splashTimer++;
     if (splashTimer >= splashInterval) {
       spawnSplash();
@@ -690,18 +606,12 @@ function startMayBreezeAnimation() {
 }
 
 
-/* =========================================================
-   JUNI – LANGSAME WOLKEN MIT POLLEN
-   ========================================================= */
-
-// Ruhiger Frühsommer: große halbtransparente Wolken ziehen
-// sehr langsam über den Himmel. Dazwischen schweben winzige
-// Pollenpartikel die im Licht glitzern.
+/* JUNI – WOLKEN + POLLEN */
 function startJuneCloudAnimation() {
   var w = animCanvas.width;
   var h = animCanvas.height;
 
-  // Große langsame Wolken (obere Hälfte)
+  // Wolken
   for (var c = 0; c < 5; c++) {
     animParticles.push({
       type: "cloud",
@@ -713,7 +623,7 @@ function startJuneCloudAnimation() {
     });
   }
 
-  // Feine Pollenpartikel
+  // Pollen
   for (var i = 0; i < 105; i++) {
     animParticles.push({
       type: "pollen",
@@ -784,12 +694,7 @@ function startJuneCloudAnimation() {
 }
 
 
-/* =========================================================
-   AUGUST – HITZE-FLIMMERUNG MIT STAUB UND WARMEM LICHT
-   ========================================================= */
-
-// August: nur helle schwebende Lichtpunkte, keine Wolken.
-// 180 Partikel verteilt über den ganzen Bildschirm.
+/* AUGUST – HITZEFLIMMERN */
 function startAugustHazeAnimation() {
   var w = animCanvas.width;
   var h = animCanvas.height;
@@ -841,15 +746,7 @@ function startAugustHazeAnimation() {
 }
 
 
-/* =========================================================
-   GLÜHENDE ASCHE / FUNKEN (JULI)
-   ========================================================= */
-
-// Hitzeflimmern von unten: viele kleine Funken und Glühpartikel
-// die aus der unteren Hälfte aufsteigen. Drei Schichten für Tiefe:
-// - Hintergrund: große weiche Glühwolken (Hitze-Dunst)
-// - Mitte: mittelgroße Funken
-// - Vordergrund: kleine helle Partikel
+/* JULI – GLÜHENDE ASCHE/FUNKEN */
 function startEmberAnimation() {
   var w = animCanvas.width;
   var h = animCanvas.height;
@@ -917,17 +814,7 @@ function startEmberAnimation() {
 }
 
 
-/* =========================================================
-   HERBSTBLÄTTER (SEPTEMBER)
-   ========================================================= */
-
-// 4 echte Blattfotos als lokale Bilder:
-// autumn_leaf.png   – roter Fächerahorn
-// autumn_leaf_2.png – rot-gelbes Herzblatt
-// autumn_leaf_3.png – brauner Ahorn
-// autumn_leaf_4.png – gelbes Birkenblatt
-// Jedes Blatt bekommt beim Spawn eine feste zufällige Größe
-// die sich im Flug NICHT verändert (kein Scale-Pulsieren).
+/* SEPTEMBER – HERBSTBLÄTTER */
 var leafImages = [];
 var leafImagesLoaded = 0;
 var leafImagePaths = [
@@ -958,8 +845,6 @@ function startLeavesAnimation() {
   var h = animCanvas.height;
 
   for (var i = 0; i < count; i++) {
-    // Etwa die Hälfte der Blätter dreht sich um die eigene Achse
-    // (3D-Flip), die andere Hälfte fällt nur mit normaler Rotation.
     var doesFlip = Math.random() < 0.5;
 
     animParticles.push({
@@ -992,7 +877,6 @@ function startLeavesAnimation() {
 
       // Achsendrehung: scaleX oszilliert zwischen -1 und 1,
       // das simuliert das Umdrehen des Blattes im Wind.
-      // Die Größe bleibt dabei fest (kein scaleY).
       if (p.doesFlip) {
         animCtx.scale(Math.cos(p.flipAngle), 1);
       }
@@ -1031,13 +915,7 @@ function startLeavesAnimation() {
 }
 
 
-/* =========================================================
-   GEWITTER MIT REGEN + BLITZ (OKTOBER)
-   ========================================================= */
-
-// Regentropfen als diagonale Linien + gelegentliche Blitze.
-// Adaptiert aus dem Original (10_oktober), aber auf einen
-// einzigen Canvas reduziert damit es nicht kollidiert.
+/* OKTOBER – GEWITTER (REGEN + BLITZ) */
 var stormLightning = [];
 var stormLightTimer = 0;
 var stormLightInterval = 200;

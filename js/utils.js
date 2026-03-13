@@ -1,8 +1,6 @@
-/* =========================================================
-   UTILS.JS – Allgemeine Hilfsfunktionen
-   ========================================================= */
+/* Utils */
 
-// Array zufällig mischen (Fisher-Yates)
+// Array mischen (Fisher-Yates)
 function shuffleArray(array) {
   var shuffled = array.slice();
   for (var i = shuffled.length - 1; i > 0; i--) {

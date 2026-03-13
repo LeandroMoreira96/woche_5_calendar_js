@@ -1,18 +1,6 @@
-/* =========================================================
-   HISTORY.JS – Historische Ereignisse von Wikipedia laden
-   Eigenes Modul, getrennt von der Kalender-Logik (script.js)
-   ========================================================= */
+/* Wikipedia-Events laden */
 
-
-/* =========================================================
-   JAPAN-FILTER KEYWORDS
-   ========================================================= */
-
-// Liste von Schlüsselwörtern um Japan-bezogene Ereignisse
-// aus den Wikipedia-Events rauszufiltern.
-// Enthält deutsche UND englische/japanische Begriffe,
-// weil Eigennamen oft gleich bleiben.
-// Groß-/Kleinschreibung wird beim Vergleich ignoriert.
+/* JAPAN-FILTER KEYWORDS */
 var japanKeywords = [
   "japan", "japanisch", "japanische", "japanischen", "japanischer",
   "tokio", "tokyo", "kyōto", "kyoto", "osaka", "nagasaki",
@@ -28,59 +16,36 @@ var japanKeywords = [
 ];
 
 
-/* =========================================================
-   REQUEST-COUNTER + CACHE + DEBOUNCE-TIMER
-   ========================================================= */
-
-// Request-Counter: Wenn ich schnell hintereinander auf
-// verschiedene Tage klicke, laufen mehrere API-Requests
-// gleichzeitig. Der Counter sorgt dafür, dass nur das
-// Ergebnis vom letzten Klick angezeigt wird.
+/* REQUEST-COUNTER + CACHE + DEBOUNCE */
+// letzter Klick zählt
 var currentRequestId = 0;
-
-// Cache: Bereits geladene Tage werden gespeichert.
-// Wenn ich auf einen Tag klicke den ich schon mal geladen habe,
-// kommt das Ergebnis sofort aus dem Speicher – kein API-Call nötig.
-// Schlüssel ist "MM-DD", z.B. "03-09"
+// Cache MM-DD
 var eventsCache = {};
-
-// Debounce-Timer: Wenn ich schnell durch Tage klicke,
-// wartet die API 150ms bevor sie wirklich loslegt.
-// Nur der letzte Klick löst den Request aus.
+// Debounce 150ms
 var historyDebounceTimer = null;
 
-
-/* =========================================================
-   HISTORISCHE EREIGNISSE VON DER WIKIPEDIA API LADEN
-   ========================================================= */
-
-// Ich nutze die Wikipedia REST API (de.wikipedia.org) um
-// historische Ereignisse für einen bestimmten Tag zu holen.
-// Die API liefert die Texte direkt auf Deutsch.
-// Zuerst filtere ich nach Japan-bezogenen Events.
-// Wenn es keine gibt, zeige ich die 5 interessantesten
-// globalen Ereignisse an, damit das Kalenderblatt nicht leer bleibt.
+/* WIKIPEDIA API LADEN */
+// Events holen, Japan-Filter, sonst 5 globale
 function loadHistoricalEvents(optionalMonth, optionalDay) {
   var today = new Date();
   var targetMonth = optionalMonth || (today.getMonth() + 1);
   var targetDay = optionalDay || today.getDate();
 
-  // Monat und Tag mit führender Null formatieren (API erwartet MM/DD)
+  // MM-DD
   var mm = targetMonth < 10 ? "0" + targetMonth : "" + targetMonth;
   var dd = targetDay < 10 ? "0" + targetDay : "" + targetDay;
   var cacheKey = mm + "-" + dd;
 
-  // Cache-Treffer → sofort anzeigen, kein API-Call nötig
+  // Cache
   if (eventsCache[cacheKey]) {
     renderHistoryEvents(eventsCache[cacheKey]);
     return;
   }
 
-  // Kein Cache → neuen Request starten
   currentRequestId++;
   var thisRequestId = currentRequestId;
 
-  // Ladekreis + pulsierende Punkte sofort anzeigen
+  // Spinner
   showLoadingIndicator();
 
   var apiUrl = "https://de.wikipedia.org/api/rest_v1/feed/onthisday/events/" + mm + "/" + dd;
@@ -93,11 +58,9 @@ function loadHistoricalEvents(optionalMonth, optionalDay) {
       return response.json();
     })
     .then(function(data) {
-      // Wenn inzwischen ein neuerer Request gestartet wurde,
-      // verwerfe ich dieses Ergebnis
+      // veraltet
       if (thisRequestId !== currentRequestId) return;
 
-      // API gibt { events: [...] } oder direkt ein Array zurück
       var allEvents;
       if (Array.isArray(data)) {
         allEvents = data;
@@ -117,10 +80,8 @@ function loadHistoricalEvents(optionalMonth, optionalDay) {
         return;
       }
 
-      // Events in mein einheitliches Format bringen
       var cleanEvents = convertToCleanEvents(allEvents);
 
-      // Zuerst nach Japan-bezogenen Ereignissen filtern
       var japanEvents = filterJapanEvents(cleanEvents);
 
       var selected;
@@ -128,13 +89,11 @@ function loadHistoricalEvents(optionalMonth, optionalDay) {
         var shuffled = shuffleArray(japanEvents);
         selected = shuffled.slice(0, 5);
       } else {
-        // Keine Japan-Events an diesem Tag →
-        // 5 zufällige globale Events zeigen damit es nicht leer bleibt
+        // Fallback
         var shuffled = shuffleArray(cleanEvents);
         selected = shuffled.slice(0, 5);
       }
 
-      // Im Cache speichern für spätere Klicks
       eventsCache[cacheKey] = selected;
       renderHistoryEvents(selected);
     })
@@ -149,13 +108,7 @@ function loadHistoricalEvents(optionalMonth, optionalDay) {
 }
 
 
-/* =========================================================
-   LADEANIMATION ANZEIGEN (SPINNER + PUNKTE)
-   ========================================================= */
-
-// Zeigt einen drehenden Kreis und pulsierende Punkte
-// während die API-Daten geladen werden.
-// Die Animation ist rein CSS-basiert (in info-box.css).
+/* LADEANIMATION (SPINNER + PUNKTE) */
 function showLoadingIndicator() {
   var container = document.getElementById("history-events-list");
   if (!container) return;
@@ -171,13 +124,7 @@ function showLoadingIndicator() {
 }
 
 
-/* =========================================================
-   JAPAN-FILTER
-   ========================================================= */
-
-// Durchsucht alle Events nach Japan-Keywords.
-// Prüft den Text auf Schlüsselwörter wie "Japan", "Tokio" usw.
-// Gibt nur die Events zurück die einen Japan-Bezug haben.
+/* JAPAN-FILTER */
 function filterJapanEvents(cleanEvents) {
   var filtered = [];
 
@@ -196,12 +143,8 @@ function filterJapanEvents(cleanEvents) {
 }
 
 
-/* =========================================================
-   EVENTS IN EINHEITLICHES FORMAT BRINGEN
-   ========================================================= */
-
-// Die Wikipedia API gibt { text, year, pages } zurück.
-// Ich brauche nur { year, text } für mein Rendering.
+/* EVENTS FORMAT */
+// API → { year, text }
 function convertToCleanEvents(allEvents) {
   var clean = [];
 
@@ -216,13 +159,7 @@ function convertToCleanEvents(allEvents) {
 }
 
 
-/* =========================================================
-   ÜBERSCHRIFT FÜR DEN EREIGNIS-BEREICH SETZEN
-   ========================================================= */
-
-// Die Überschrift zeigt das Datum an,
-// z.B. "Historische Ereignisse am 9. März"
-// Nutzt monthNames aus config.js
+/* TITEL SETZEN */
 function updateHistoryTitle(optionalMonth, optionalDay) {
   var titleElement = document.getElementById("history-title");
   if (!titleElement) return;
@@ -236,12 +173,7 @@ function updateHistoryTitle(optionalMonth, optionalDay) {
 }
 
 
-/* =========================================================
-   EREIGNISSE IM HTML RENDERN
-   ========================================================= */
-
-// Baut die <li>-Elemente mit den Ereignissen zusammen.
-// Jahr wird fett angezeigt, danach der Text.
+/* EVENTS RENDERN */
 function renderHistoryEvents(eventsArray) {
   var historyContainer = document.getElementById("history-events-list");
   if (!historyContainer) return;
@@ -259,4 +191,4 @@ function renderHistoryEvents(eventsArray) {
   historyContainer.innerHTML = htmlString;
 }
 
-// shuffleArray kommt aus utils.js
+// shuffleArray aus utils.js

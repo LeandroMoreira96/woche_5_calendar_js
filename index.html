@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalenderblatt</title>
 
-    <!-- CSS-Dateien: aufgeteilt nach Bereichen -->
+    <!-- CSS -->
     <link rel="stylesheet" href="styles/global.css" />
     <link rel="stylesheet" href="styles/sidebar.css" />
     <link rel="stylesheet" href="styles/calendar-unit.css" />
@@ -14,47 +14,45 @@
   </head>
 
   <body>
-    <!-- Haupt-Container: Flexbox, Sidebar links + Content rechts -->
+    <!-- app -->
     <div class="app">
 
-      <!-- Button um die Sidebar ein/auszublenden. Bleibt immer sichtbar. -->
+      <!-- Sidebar Toggle -->
       <button id="sidebar-toggle-button" class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Sidebar"></button>
 
-      <!-- ==================== SIDEBAR ==================== -->
-      <!-- Sidebar startet versteckt, Standard-Layout ist horizontal -->
+      <!-- Sidebar -->
       <aside class="sidebar sidebar--hidden">
         <nav class="sidebar__nav">
-          <!-- Titel in Deutsch und Japanisch -->
+          <!-- Titel -->
           <span class="sidebar__title sidebar__title--german">Kalender</span>
           <span class="sidebar__title sidebar__title--japanese">カレンダー</span>
         </nav>
 
-        <!-- Info-Karten: Jede Karte nutzt info_field.png als Hintergrund.
-             Inhalt wird dynamisch von script.js per renderSidebarInfoCards() befüllt. -->
+        <!-- Info-Karten -->
         <div class="sidebar__info-cards" id="sidebar-info-cards">
         </div>
       </aside>
 
-      <!-- ==================== HAUPTBEREICH ==================== -->
+      <!-- Content -->
       <main class="content" id="main-area">
 
-        <!-- Kalender-Unit: Rolle + Pergament + Kalender als feste Einheit -->
+        <!-- Unit -->
         <div class="calendar-unit">
           <div class="calendar-unit__roll" id="calendar-roll-area"></div>
           <div class="calendar-unit__parchment"></div>
           <div class="calendar-unit__calendar" id="calendar-area">
-            <!-- Wird von script.js per generateCalendarHtml(true) befüllt -->
+            <!-- calendar-area -->
           </div>
         </div>
 
-        <!-- Info-Box unter dem Kalender -->
+        <!-- Info -->
         <section class="content__info" id="content-info">
           <h1 class="content__title" id="content-title">Kalenderblatt</h1>
 
-          <!-- Hier kommt der dynamische Infotext rein (Wochentag, der wievielte, usw.) -->
+          <!-- Intro -->
           <p class="content__intro" id="content-intro"></p>
 
-          <!-- Bundesland-Dropdown + Feiertage-Toggle -->
+          <!-- Dropdown + Buttons -->
           <div style="margin-bottom: 15px;">
             <select id="state-select" onchange="changeStateSelection()" style="padding: 5px; background: rgba(0,0,0,0.5); color: #c9a771; border: 1px solid #c9a771; border-radius: 4px;">
               <option value="ALLE">Alle (bundesweit)</option>
@@ -83,19 +81,19 @@
             </button>
           </div>
 
-          <!-- Feiertagsliste für den aktuellen Monat -->
+          <!-- Feiertage -->
           <div id="holiday-list" style="margin-bottom: 15px; font-size: 0.9rem; color: #c9a771; line-height: 1.6;"></div>
 
-          <!-- Historische Ereignisse (dynamisch per Wikidata API aus history.js) -->
+          <!-- History -->
           <h2 class="content__subtitle" id="history-title">Historische Ereignisse</h2>
           <ul class="content__events" id="history-events-list">
-            <!-- Wird von history.js per loadHistoricalEvents() befüllt -->
+            <!-- history-events-list -->
           </ul>
         </section>
       </main>
     </div>
 
-    <!-- Scripts: Reihenfolge wichtig (Abhängigkeiten) -->
+    <!-- Scripts -->
     <script src="js/config.js"></script>
     <script src="js/date-utils.js"></script>
     <script src="js/utils.js"></script>

@@ -1,6 +1,4 @@
-/* =========================================================
-   SIDEBAR.JS – Info-Karten für die Sidebar
-   ========================================================= */
+/* Sidebar Info-Karten */
 
 // Info-Karten mit Datumsinfos befüllen
 function renderSidebarInfoCards() {
@@ -37,7 +35,7 @@ function renderSidebarInfoCards() {
   cardsContainer.innerHTML = card1 + card2 + card3 + card4 + card5;
 }
 
-// HTML für eine einzelne Info-Karte
+// Eine Info-Karte bauen
 function buildInfoCard(label, value) {
   return (
     "<div class='sidebar__info-card'>" +

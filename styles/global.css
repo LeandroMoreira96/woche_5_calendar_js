@@ -1,15 +1,6 @@
-/* =========================================================
-   GLOBAL.CSS – Grundlegende Einstellungen für die ganze Seite
-   ========================================================= */
+/* Global */
 
-/* =========================================================
-   JAPANISCHE SCHRIFTART LADEN
-   ========================================================= */
-
-/* Die "Osake" Schriftart liegt im Ordner japan-font/.
-   Ich lade sie hier, damit ich sie überall nutzen kann.
-   font-display: swap sorgt dafür, dass der Text sofort
-   mit einer Ersatzschrift angezeigt wird, bis Osake geladen ist. */
+/* SCHRIFTARTEN (Osake, Amanojaku) */
 @font-face {
   font-family: "Osake";
   src:
@@ -25,17 +16,11 @@
   src: url("../japan-font/amanojaku.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
-  /* Zeigt erst eine Systemschrift, bis Amanojaku geladen ist (verhindert unsichtbaren Text beim Laden) */
+  /* swap */
   font-display: swap;
 }
 
-/* =========================================================
-   HTML UND BODY – GRUNDEINSTELLUNGEN
-   ========================================================= */
-
-/* Die Seite soll genau den Bildschirm füllen, ohne Scrollen.
-   100vh = komplette Bildschirmhöhe.
-   overflow: hidden verhindert Scrollbalken. */
+/* 100vh, overflow hidden */
 html,
 body {
   height: 100vh;
@@ -49,9 +34,7 @@ body {
   color: #2c3e50;
 }
 
-/* Hintergrund-Einstellungen für den Body.
-   Das eigentliche Bild wird per JavaScript gesetzt,
-   hier definiere ich nur wie es dargestellt wird. */
+/* Hintergrund aus JS */
 body {
   background-size: cover;
   background-position: center;
@@ -59,13 +42,7 @@ body {
   background-attachment: fixed;
 }
 
-/* =========================================================
-   APP-CONTAINER – FLEX-LAYOUT
-   ========================================================= */
-
-/* .app ist der Haupt-Container im HTML.
-   display: flex sorgt dafür, dass Sidebar und Content
-   nebeneinander angezeigt werden (horizontal). */
+/* app Flex */
 .app {
   display: flex;
   justify-content: flex-start;
@@ -75,18 +52,12 @@ body {
   padding: 0;
 }
 
-/* main-Reset: Browser setzen oft Margin – das verursacht den linken Abstand */
+/* main: Margin-Reset */
 main.content {
   margin: 0 !important;
 }
 
-/* =========================================================
-   TABELLEN-RESET
-   ========================================================= */
-
-/* Damit die Kalender-Tabellen keine doppelten Ränder haben
-   und standardmäßig keine Borders anzeigen.
-   Die eigentlichen Borders setze ich dann gezielt in calendar.css */
+/* Tabellen borders in calendar.css */
 table {
   border-collapse: collapse;
 }

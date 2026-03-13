@@ -1,14 +1,9 @@
-/* =========================================================
-   HOLIDAYS.JS – Feiertage API und Logik
-   ========================================================= */
+/* Feiertage Nager.Date API */
 
-// Geladene Feiertage von der Nager.Date API
 var loadedHolidays = [];
-
-// Standardmäßig "ALLE" = nur bundesweite Feiertage
 var selectedState = "ALLE";
 
-// Feiertage von der Nager.Date API laden
+// Feiertage von Nager.Date API laden
 function loadHolidaysFromApi() {
   var apiUrl = "https://date.nager.at/api/v3/PublicHolidays/" + currentYear + "/DE";
 
@@ -24,7 +19,7 @@ function loadHolidaysFromApi() {
     });
 }
 
-// Feiertagsnamen für ein Datum ermitteln
+// Feiertagsname für Datum
 function getHolidayName(year, month, day) {
   var targetDate = formatDateForApiComparison(year, month, day);
 
